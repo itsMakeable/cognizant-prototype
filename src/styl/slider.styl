@@ -18,7 +18,9 @@
 	fs(1.8rem)
 
 .swiper-slide
-	transform scale(1)
+	transform scale(0)
+	opacity 0
+	transition opacity 0s linear
 	h3
 		padding-bottom 6px
 	h4
@@ -30,23 +32,35 @@
 		
 .swiper-slide-active	
 	transform scale(1)
-	padding 36px 38px
+	// padding 36px 38px
 	background url(img/slideBackground.jpg) no-repeat
 	background-size cover
-	.swiper-slide-inner-wrapper
-		padding 0
+	// left -36px
+	min-width 500px
+	opacity 1
+	z-index 1
+	// .swiper-slide-inner-wrapper
+	// 	padding 0
 		
+// .swiper-slide-next
+// 	left -101px
+// .swiper-slide-prev
+// 	right -29px
 .swiper-slide-prev,
 .swiper-slide-next
-	transform scale(0.8)
-	
+	transform scale(1)
+	z-index: 0
+	opacity 1
+	// transform scale(0.8)
 	hr,
 	h6,
 	.slide-body
 		opacity 0
 	p
 		font-family ProximaNova
+		
 
+	
 .swiper-container-horizontal 
 	> .swiper-pagination
 		position fixed 

@@ -24,7 +24,7 @@ gulp.task 'watch', ['browser-sync'], ->
 	gulp.watch [ './.tmp/js/*' ], ['js']
 
 
-gulp.task 'default', (cb) ->
+gulp.task 'default', ['install'], (cb) ->
 	runSequence 'watch',
 		'coffee',
 		'styl',
