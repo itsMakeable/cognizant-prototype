@@ -1,0 +1,77 @@
+doctype html
+html.no-js(lang='')
+	head
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		title
+		meta(name='description', content='')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		link(rel='apple-touch-icon', href='apple-touch-icon.png')
+		//- Place favicon.ico in the root directory
+		link(rel='stylesheet', href='index.css')
+		script(src='//cdnjs.cloudflare.com/ajax/libs/headjs/1.0.3/head.min.js')
+	body.gradient-1
+		//- //if lt IE 8
+		//- 	p.browserupgrade
+		//- 		| You are using an 
+		//- 		strong outdated
+		//- 		|	browser. Please 
+		//- 		a(href='http://browsehappy.com/') upgrade your browser
+		//- 		|	to improve your experience.
+		.swiper-container
+			//- Additional required wrapper
+			.swiper-wrapper
+				//- Slides
+				.swiper-slide
+					.swiper-slide-inner-wrapper
+						.slide-tag 
+							strong #Perspective&nbsp;
+							| &nbsp;|  38k Shares
+						h3 Employee Wellness:
+						h4 Employee Wellness: Two Parts Perspiration, One Part Persistence
+						p Added for you on 12.14.14
+						hr
+						h6 A shift to individual healthcare.
+						p.slide-body
+							| Healthcare consumers are gaining control over how and with whom — they spend their healthcare dollars. 
+				.swiper-slide
+					.swiper-slide-inner-wrapper
+						.slide-tag 
+							strong #Perspective&nbsp;
+							| &nbsp;|&nbsp;&nbsp;38k Shares
+						h3 Healthcare Consumerism: 
+						h4 The Rise of the Empowered Healthcare Consumer
+						p Added for you on 12.14.14
+						hr
+						h6 A shift to individual healthcare.
+						p.slide-body
+							| Healthcare consumers are gaining control over how and with whom — they spend their healthcare dollars. 
+				.swiper-slide
+					.swiper-slide-inner-wrapper
+						.slide-tag 
+							strong #CaseStudy&nbsp;
+							| &nbsp;|  42k Shares
+						h3 Healthcare Consumerism: 
+						h4 Your 12 Step Guide to Analytics Driven Healthcare
+						p Added for you on 12.14.14
+						hr
+						h6 A shift to individual healthcare.
+						p.slide-body
+							| Healthcare consumers are gaining control over how and with whom — they spend their healthcare dollars. 
+			//- If we need pagination
+			.swiper-pagination
+			//- If we need navigation buttons
+			.swiper-button-prev
+			.swiper-button-next
+			//- If we need scrollbar
+			.swiper-scrollbar
+
+		script(src='app.js')
+		//- Google Analytics: change UA-XXXXX-X to be your site's ID.
+		script.
+			(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+			function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+			e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+			e.src='//www.google-analytics.com/analytics.js';
+			r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+			ga('create','UA-XXXXX-X','auto');ga('send','pageview');

@@ -1,0 +1,62 @@
+html
+	font-size 62.5%
+	-webkit-font-smoothing initial
+	font-smoothing initial
+	text-rendering optimizeLegibility
+	font-smooth always
+	-webkit-box-sizing border-box
+	-moz-box-sizing border-box
+	box-sizing border-box
+	font-family 'sans-serif'
+
+body,
+html
+	margin 0
+	padding 0
+	min-height 100%
+
+img, svg, object, embed, video, iframe, audio, canvas
+	width 100%
+	display block
+	max-height 100%
+
+body
+	-webkit-touch-callout none
+	-webkit-text-size-adjust none
+	-webkit-user-select none
+	color black
+
+*
+	-webkit-tap-highlight-color rgba(0,0,0,0)
+	box-sizing inherit
+	&:before,
+	&:after
+		box-sizing inherit
+		
+i
+	display inline-block
+	
+a
+	cursor pointer
+	reset-link()
+	&:focus
+		outline: 0
+
+hr
+	border 0px solid transparent
+	border-top 0px solid transparent
+	background-color transparent
+	border-bottom 1px solid blue
+	margin 22px 0
+	padding 0
+	width 100%
+	height 1px
+	
+.container
+	center(144rem)
+	position relative
+	+below(102.4rem)
+		max-width 85%
+	+below(76.8rem)
+		max-width 95%
+	

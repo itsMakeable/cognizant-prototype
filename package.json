@@ -1,0 +1,62 @@
+{
+  "name": "cognizant-prototype",
+  "version": "1.0.0",
+  "description": "cognizant prototype",
+  "main": "http://www.cognizant.com",
+  "repository": {
+    "type": "git",
+    "url": "http://ky.la"
+  },
+  "author": "Kyla Medina",
+  "license": "MIT",
+  "bugs": {
+    "url": "http://ky.la"
+  },
+  "homepage": "",
+  "devDependencies": {
+    "axis": "*",
+    "browser-sync": "*",
+    "cheerio": "*",
+    "coffee-script": "*",
+    "del": "*",
+    "gulp": "*",
+    "gulp-accord": "*",
+    "gulp-autoprefixer": "*",
+    "gulp-cache": "*",
+    "gulp-cheerio": "*",
+    "gulp-coffeelint": "*",
+    "gulp-concat": "*",
+    "gulp-cssfont64": "*",
+    "gulp-cssmin": "*",
+    "gulp-filter": "*",
+    "gulp-html2jade": "*",
+    "gulp-imagemin": "*",
+    "gulp-import-css": "^0.1.2",
+    "gulp-install": "*",
+    "gulp-jshint": "*",
+    "gulp-load-plugins": "*",
+    "gulp-notify": "*",
+    "gulp-order": "*",
+    "gulp-plumber": "*",
+    "gulp-rename": "*",
+    "gulp-replace": "*",
+    "gulp-styledocco": "*",
+    "gulp-stylus": "*",
+    "gulp-svgmin": "*",
+    "gulp-svgstore": "*",
+    "jade": "*",
+    "jeet": "*",
+    "jshint-stylish": "*",
+    "main-bower-files": "*",
+    "nib": "*",
+    "require-dir": "*",
+    "run-sequence": "*",
+    "rupture": "*",
+    "stylus": "*",
+    "svgo": "*",
+    "uglify-js": "*"
+  },
+  "scripts": {
+    "start": "node ./bin/www"
+  }
+}
