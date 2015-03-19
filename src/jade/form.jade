@@ -37,6 +37,18 @@ html.no-js(lang='')
 						input.mkbl-main-input(type="text")
 						i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
 							svg: use(xlink:href='#icon-carrot')
+					fieldset#enter-field-inquiry.mkbl-fieldset.is-hidden
+						label.mkbl-main-label What type of inquiry is this?*
+						input.mkbl-main-input.position-absolute(type="text" value='Choose Type') 
+						select.mkbl-main-input.mkbl-select(type="text")
+							option(value='this1') Alliance
+							option(value='this2') Alumni
+							option(value='this3') Career Services
+							option(value='this3') Investor Relations
+							option(value='this3') Media
+							option(value='this3') Request for Services
+						i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
+							svg: use(xlink:href='#icon-carrot')
 					.mkbl-form-progress-bar
 						.mkbl-form-progress-bar-progress
 
@@ -44,40 +56,49 @@ html.no-js(lang='')
 					fieldset#field-name.mkbl-fieldset
 						label.mkbl-label(for="") Name*
 						div.mkbl-subinput
+							i: svg: use(xlink:href='#icon-ellipse')
 						div.mkbl-fieldset-bg
-					fieldset.mkbl-fieldset#field-email
+					fieldset#field-email.mkbl-fieldset
 						label.mkbl-label(for="") Email*
-						div.mkbl-subinput 
+						div.mkbl-subinput
+						//- i: svg: use(xlink:href='#icon-ellipse') 
 						div.mkbl-fieldset-bg
-					fieldset.mkbl-fieldset#field-org
+					fieldset#field-org.mkbl-fieldset
 						label.mkbl-label(for="") Organization*
 						div.mkbl-subinput
+							i: svg: use(xlink:href='#icon-ellipse')
 						div.mkbl-fieldset-bg
 					fieldset.mkbl-fieldset
 						label.mkbl-label(for="") Phone Number*
 						div.mkbl-subinput
+							i: svg: use(xlink:href='#icon-ellipse')
 						div.mkbl-fieldset-bg
 					fieldset.mkbl-fieldset
 						label.mkbl-label(for="") Region*
 						div.mkbl-subinput
+							i: svg: use(xlink:href='#icon-ellipse')
 						div.mkbl-fieldset-bg
-					fieldset.mkbl-fieldset
+					fieldset#field-inquiry.mkbl-fieldset
 						label.mkbl-label(for="") Inquiry Type*
 						div.mkbl-subinput
+							i: svg: use(xlink:href='#icon-ellipse')
 						div.mkbl-fieldset-bg
-					fieldset.mkbl-fieldset
-						label.mkbl-label(for="") Size of Business
-						div.mkbl-subinput
-						div.mkbl-fieldset-bg
-					fieldset.mkbl-fieldset
-						label.mkbl-label(for="") Size of Engagement
-						div.mkbl-subinput
-						div.mkbl-fieldset-bg
-					fieldset.mkbl-fieldset
-						label.mkbl-label(for="") Comments &amp; Attachments
-						div.mkbl-subinput
-						div.mkbl-fieldset-bg
-
+					//- fieldset.mkbl-fieldset
+					//- 	label.mkbl-label(for="") Size of Business
+					//- 	div.mkbl-subinput
+					//- 		//- i: svg: use(xlink:href='#icon-ellipse')
+					//- 	div.mkbl-fieldset-bg
+					//- fieldset.mkbl-fieldset
+					//- 	label.mkbl-label(for="") Size of Engagement
+					//- 	div.mkbl-subinput
+					//- 		//- i: svg: use(xlink:href='#icon-ellipse')
+					//- 	div.mkbl-fieldset-bg
+					//- fieldset.mkbl-fieldset
+					//- 	label.mkbl-label(for="") Comments &amp; Attachments
+					//- 	div.mkbl-subinput
+					//- 		//- i: svg: use(xlink:href='#icon-ellipse')
+					//- 	div.mkbl-fieldset-bg
+			button.mkbl-button Submit
 
 		script(src='app.js')
 		//- Google Analytics: change UA-XXXXX-X to be your site's ID.

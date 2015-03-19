@@ -11,6 +11,7 @@ $input
 	margin-top 50px
 	position relative
 	width 100%
+	
 	&.is-hidden
 		display none
 	&.is-active
@@ -27,7 +28,11 @@ $input
 	&.is-filled
 		.mkbl-label
 			top -10px
-			
+
+.mkbl-form-main-field
+	.mkbl-fieldset
+		overflow hidden
+		
 .mkbl-fieldset-bg
 	height 0px
 	background-color rgba(0,0,0,0)
@@ -38,6 +43,7 @@ $input
 	transition all 0.1s ease 0.1s
 	
 .mkbl-form-subfields
+	group()
 	.mkbl-fieldset
 		// opacity 0
 		col(1/3, cycle:3, gutter: 6)
@@ -72,15 +78,28 @@ $input
 	padding 11px 1px
 	height 40px
 	line-height 1
-	border-bottom 2px solid lightgray
+	border-bottom 1px solid lightgray
 	fs(1.8rem)
+	position relative
+	i
+		size 20px
+		position absolute
+		left 20px
+		top 0
+		bottom 0
+		margin auto
 	
 .mkbl-main-input
 	@extend $input
 	height 80px
 	fs(3.2rem)
 	padding 0 3rem
-	
+	&.position-absolute
+		position absolute
+		left 0
+		bottom 0
+		// background-color green
+		
 .mkbl-form-progress-bar
 	width 100%
 	height 3px 
@@ -95,7 +114,9 @@ $input
 	left 0
 	bottom 0
 	left 0
+	transition width 0.5s cubic-bezier(0.68, 0, 0.2, 1.05) 0.2s
 	background-color green
+.gradient .mkbl-form-progress-bar-progress
 	transition width 0.5s cubic-bezier(0.68, 0, 0.2, 1.05) 0.2s
 	background: -moz-linear-gradient(90deg, blue 0%, green 100%)
 	background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,blue), color-stop(100%,green))
@@ -112,4 +133,21 @@ $input
 	margin auto
 	size 32px
 	color blue
-	
+
+.mkbl-select
+	-webkit-appearance: none
+	background transparent
+	width 100%
+	width calc(100% + 12px)
+	border-radius: 0
+	outline 0
+	opacity 0
+	&:focus
+		outline 0
+	+ .mkbl-right-arrow
+		transform rotate(450deg)
+	option
+		border none
+		fs(1.4rem)
+		padding 10px 20px
+		box-shadow none

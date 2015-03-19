@@ -70,7 +70,7 @@ Mkbl.formInit = ->
 		if currentField == nextField
 			return
 
-		currentFieldVal = $('#enter-' + currentField).find('input').val()
+		currentFieldVal = $('#enter-' + currentField).find('.mkbl-main-input').val()
 
 		checkInputValue = ->
 			if currentFieldVal == ''
@@ -83,6 +83,7 @@ Mkbl.formInit = ->
 					.removeClass('is-active')
 				Mkbl.setProgress()
 			else
+				console.log currentField
 				$('#' + currentField + ' .mkbl-subinput')
 					.html(currentFieldVal)
 				$('#enter-' + currentField)
@@ -90,12 +91,12 @@ Mkbl.formInit = ->
 				$('#'+ currentField)
 					.removeClass('is-active')
 					.addClass('is-filled')
-					
+
 		setInputValue = ->
 			$('#enter-' + nextField)
 				.removeClass('is-hidden')
-				.find('input')
-				.val($('#' + nextField + ' .mkbl-subinput').html())
+				.find('.mkbl-main-input')
+				.val($('#' + nextField + ' .mkbl-subinput').text())
 			$(this)
 				.addClass('is-active')
 			Mkbl.setProgress()
@@ -108,6 +109,8 @@ Mkbl.formInit = ->
 					checkInputValue()
 				when 'field-org'
 					checkInputValue()
+				when 'field-inquiry'
+					checkInputValue()
 		if !hasError
 			$(this).addClass('is-active')
 			switch nextField
@@ -116,6 +119,8 @@ Mkbl.formInit = ->
 				when 'field-email'
 					setInputValue()
 				when 'field-org'
+					setInputValue()
+				when 'field-inquiry'
 					setInputValue()
 
 			currentField = nextField
