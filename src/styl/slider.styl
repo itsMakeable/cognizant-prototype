@@ -88,7 +88,7 @@
 	transform translate(-100%,-50%) scale(0.6)
 	transition all 0.9s cubic-bezier(0.68, 0, 0.5, 1.05)
 	opacity 0
-
+	
 .slide-before-1
 	transform translate(-140%,-50%) scale(0.8)
 	transition all 0.9s cubic-bezier(0.68, 0, 0.5, 1.05)
@@ -113,13 +113,14 @@
 	&:hover
 		opacity 0.6
 		
-.mkbl-next-arrow
+.mkbl-right-arrow
 	right 0
 	transform rotate(360deg)
 	&:active
 		transform rotate(360deg) scale(0.9)
 		
-.mkbl-prev-arrow
+.mkbl-left-arrow
+	left 0
 	transform rotate(180deg)
 	transform-origin 50% 50%
 	&:active

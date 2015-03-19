@@ -1,0 +1,115 @@
+$input
+	background-color rgba(0,0,0,0)
+	border none
+	width 100%
+	color blue
+	&:focus
+		background-color rgba(0,0,0,0.1)
+
+.mkbl-fieldset
+	display block
+	margin-top 50px
+	position relative
+	width 100%
+	&.is-hidden
+		display none
+	&.is-active
+		.mkbl-label
+			top -10px
+			color white
+			transition all 0.4s cubic-bezier(0.68, 0, 0.2, 1.05) 0.1s
+		.mkbl-subinput
+			transition all 0.3s ease 
+		.mkbl-fieldset-bg
+			height 40px
+			background-color rgba(0,0,0,0.1)
+			transition all 0.4s ease-in-out 0s
+	&.is-filled
+		.mkbl-label
+			top -10px
+			
+.mkbl-fieldset-bg
+	height 0px
+	background-color rgba(0,0,0,0)
+	position absolute
+	width 100%
+	bottom 0px
+	transform-origin 50% 50%
+	transition all 0.1s ease 0.1s
+	
+.mkbl-form-subfields
+	.mkbl-fieldset
+		// opacity 0
+		col(1/3, cycle:3, gutter: 6)
+		// .mkbl-subinput
+		// 	width 0%
+		// 	opacity 0
+		// &.is-filled,
+		// &.is-active
+		// 	opacity 1
+		// 	.mkbl-subinput
+		// 		opacity 1
+		// 		width 100%
+		
+.mkbl-label,
+.mkbl-main-label
+	upcase()
+	color lightgray
+	font-family ProximaNovaBold
+	fs(1.4rem)
+	position relative
+	transition all 0.3s ease-in 0s
+	
+.mkbl-label
+	top 27px
+	
+.mkbl-main-label
+	color white
+	top -3rem
+	
+.mkbl-subinput
+	@extend $input
+	padding 11px 1px
+	height 40px
+	line-height 1
+	border-bottom 2px solid lightgray
+	fs(1.8rem)
+	
+.mkbl-main-input
+	@extend $input
+	height 80px
+	fs(3.2rem)
+	padding 0 3rem
+	
+.mkbl-form-progress-bar
+	width 100%
+	height 3px 
+	background-color lightgray
+	position relative
+
+.mkbl-form-progress-bar-progress
+	width 0%
+	height 3px
+	position absolute
+	top 0
+	left 0
+	bottom 0
+	left 0
+	background-color green
+	transition width 0.5s cubic-bezier(0.68, 0, 0.2, 1.05) 0.2s
+	background: -moz-linear-gradient(90deg, blue 0%, green 100%)
+	background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,blue), color-stop(100%,green))
+	background: -webkit-linear-gradient(90deg, blue 0%,green 100%)
+	background: -o-linear-gradient(90deg, blue 0%,green 100%)
+	background: -ms-linear-gradient(90deg, blue 0%,green 100%)
+	background: linear-gradient(90deg, blue 0%,green 100%)
+	
+.mkbl-form-arrow
+	position absolute
+	right 20px
+	top 0
+	bottom -20px
+	margin auto
+	size 32px
+	color blue
+	
