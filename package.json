@@ -42,6 +42,7 @@
     "gulp-replace": "*",
     "gulp-styledocco": "*",
     "gulp-stylus": "*",
+    "gulp-svgfallback": "^3.0.1",
     "gulp-svgmin": "*",
     "gulp-svgstore": "*",
     "jade": "*",

@@ -23,9 +23,6 @@ gulp.task 'js', ->
 	gulp.src(['./.tmp/js/vendor/*.js','./.tmp/js/*.js','./src/js/*.js'])
 		.pipe $.order [
 			"**/jquery.js"
-			"**/swiper.js"
-			"**/jquery.waypoints.js"
-			"**/lodash.js"
 			"app.js"
 		]
 		# .pipe($.accord('uglify-js', {

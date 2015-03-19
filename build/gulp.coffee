@@ -19,9 +19,9 @@ gulp.task 'watch', ['browser-sync'], ->
 	gulp.watch [ 'src/jade/*.jade', 'src/jade/includes/*.jade' ], ['jade']
 	gulp.watch [ 'src/font/**/*' ], ['font']
 	gulp.watch [ 'src/coffee/**/**/*.coffee' ], ['coffee']
-	gulp.watch [ './.tmp/css/*' ], ['css']
-	# gulp.watch [ './src/css/*' ], ['copycss']
-	gulp.watch [ './.tmp/js/*' ], ['js']
+	gulp.watch [ './.tmp/css/*.css' ], ['css']
+	gulp.watch [ './src/css/*.css' ], ['copycss']
+	gulp.watch [ './.tmp/js/*.js' ], ['js']
 
 
 gulp.task 'default', ['install'], (cb) ->
@@ -43,7 +43,7 @@ gulp.task 'browser-sync', ->
 		# proxy: 'localhost:3000'
 		port: 8088
 		open: false
-		tunnel: false
+		tunnel: true
 		online: true
 		files: 'app/**/*'
 		server: {

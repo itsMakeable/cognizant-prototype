@@ -18,8 +18,7 @@
   "dependencies": {
     "lodash": "~3.0.1",
     "waypoints": "~3.1.1",
-    "swiper": "~3.0.4",
-    "jquery": "~2.1.3"
+    "jquery": "1.11.2"
   },
   "overrides": {
     "swiper": {
@@ -27,60 +26,6 @@
         "dist/js/swiper.jquery.min.js",
         "dist/css/swiper.css"
       ]
-    },
-    "isotope": {
-      "main": "dist/isotope.pkgd.js"
-    },
-    "isotope-packery": {
-      "main": "packery-mode.pkgd.js"
-    },
-    "waypoints": {
-      "main": "lib/jquery.waypoints.js"
-    },
-    "packery": {
-      "ignore": "true"
-    },
-    "classie": {
-      "ignore": "true"
-    },
-    "doc-ready": {
-      "ignore": "true"
-    },
-    "eventEmitter": {
-      "ignore": "false"
-    },
-    "eventie": {
-      "ignore": "true"
-    },
-    "get-size": {
-      "ignore": "true"
-    },
-    "get-style-property": {
-      "ignore": "false"
-    },
-    "matches-selector": {
-      "ignore": "true"
-    },
-    "draggabilly": {
-      "ignore": "false"
-    },
-    "outlayer": {
-      "ignore": "true"
-    },
-    "fit-rows": {
-      "ignore": "true"
-    },
-    "item": {
-      "ignore": "true"
-    },
-    "layout-mode": {
-      "ignore": "true"
-    },
-    "masonry": {
-      "ignore": "true"
-    },
-    "vertical": {
-      "ignore": "true"
     }
   }
 }

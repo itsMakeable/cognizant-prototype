@@ -1,26 +1,38 @@
-.swiper-container
-	width: 1024px
-	height: 520px
+.mkbl-slide-container
+	width 100%
+	overflow-x hidden
+	overflow hidden
 	
-.swiper-wrapper
-	-ms-overflow-style none
-	&::-webkit-scrollbar
-		display none
-
-.swiper-slide-inner-wrapper
-	padding 36px 38px
+.mkbl-slide-inner-wrapper
+	padding 36px 70px 36px 38px
 
 .slide-tag
 	background-color white
 	color darkblue
-	padding 10px
+	padding 8px 10px 7px 10px
 	margin-bottom 56px
+	line-height 1
 	fs(1.8rem)
+	display inline-block
 
-.swiper-slide
-	transform scale(0)
+.mkbl-slide
+	transform translate(-50%,-50%) scale(0.6)
+	width 450px
+	height auto
+	display inline-block
+	padding-bottom 7px
+	top 50%
+	left 50%
 	opacity 0
-	transition opacity 0s linear
+	position absolute
+	// border 1px solid rgba(255,255,255,0.1)
+	min-height 350px
+	cursor pointer
+	transition all 0.9s cubic-bezier(0.68, 0, 0.5, 1.05)
+	hr
+		width 0%
+		opacity 0
+		transition opacity 0.3s linear, width 0s linear 0.3s
 	h3
 		padding-bottom 6px
 	h4
@@ -29,51 +41,83 @@
 		padding-bottom 12px
 	p
 		color white
+		font-family ProximaNova			
+	.mkbl-slide-body
+		opacity 0
+		// transform translateY(20px)
+		transition opacity 0.3s linear
+
+.mkbl-slide-bg
+	position absolute
+	top 0
+	bottom 0
+	width 100%
+	height 100%
+	opacity 0
+	z-index -1
+	transition opacity 0.4s ease 0.2s
+
+.mkbl-slider-bottom-group
+	position absolute
+	bottom 36px
+	margin-right 38px
+
+.mkbl-slide-body
+	transition all 0.6s linear 0.4s
 		
-.swiper-slide-active	
-	transform scale(1)
-	// padding 36px 38px
-	background url(img/slideBackground.jpg) no-repeat
-	background-size cover
-	// left -36px
-	min-width 500px
+.slide-active
 	opacity 1
 	z-index 1
-	// .swiper-slide-inner-wrapper
-	// 	padding 0
-		
-// .swiper-slide-next
-// 	left -101px
-// .swiper-slide-prev
-// 	right -29px
-.swiper-slide-prev,
-.swiper-slide-next
-	transform scale(1)
-	z-index: 0
-	opacity 1
-	// transform scale(0.8)
-	hr,
-	h6,
-	.slide-body
-		opacity 0
-	p
-		font-family ProximaNova
-		
+	min-height 550px
+	transform translate(-50%,-50%) scale(1)
+	transition all 0.9s cubic-bezier(0.68, 0, 0.5, 1.05) 0.2
+	.mkbl-slide-bg
+		opacity 1
+		transition opacity 0.6s ease 0.4s
+	.mkbl-slide-body
+		opacity 1
+		transition opacity 0.4s ease 0.4s
+	hr
+		transition width 0.4s ease-in-out 0.4s
+		width 100%
+		opacity 1
+	
+.slide-before-2
+	transform translate(-580px,-50%) scale(0.6)
+	transition all 0.9s cubic-bezier(0.68, 0, 0.5, 1.05) 0.4
+	opacity 0
 
+.slide-before-1
+	transform translate(-630px,-50%) scale(0.8)
+	opacity 1
+
+.slide-after-1
+	transform translate(180px,-50%) scale(0.8)
+	transition all 0.9s cubic-bezier(0.68, 0, 0.5, 1.05) 0.6
+	opacity 1
+
+.slide-after-2
+	transform translate(130px,-50%) scale(0.6)
+	transition all 0.9s cubic-bezier(0.68, 0, 0.5, 1.05) 0.8
+	opacity 0
 	
-.swiper-container-horizontal 
-	> .swiper-pagination
-		position fixed 
-		right 30px 
-		bottom 50% 
-		left auto
-		margin auto
-	> .swiper-pagination 
-		.swiper-pagination-bullet
-			display block
-			opacity 1
-			margin 5px 0
-			background none
-			border 1px solid white
-	
+.mkbl-slide-nav
+	@extend $vertical-align
+	size 7rem
+	opacity 1
+	transition opacity 0.3s ease, transform 0.1s ease
+	margin-top 0px
+	&:hover
+		opacity 0.6
 		
+.mkbl-next-arrow
+	right 0
+	transform rotate(360deg)
+	&:active
+		transform rotate(360deg) scale(0.9)
+		
+.mkbl-prev-arrow
+	transform rotate(180deg)
+	transform-origin 50% 50%
+	&:active
+		transform rotate(180deg) scale(0.9)

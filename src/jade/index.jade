@@ -11,6 +11,7 @@ html.no-js(lang='')
 		link(rel='stylesheet', href='index.css')
 		script(src='//cdnjs.cloudflare.com/ajax/libs/headjs/1.0.3/head.min.js')
 	body.gradient-1
+		include includes/symbols.svg
 		//- //if lt IE 8
 		//- 	p.browserupgrade
 		//- 		| You are using an 
@@ -18,53 +19,101 @@ html.no-js(lang='')
 		//- 		|	browser. Please 
 		//- 		a(href='http://browsehappy.com/') upgrade your browser
 		//- 		|	to improve your experience.
-		.swiper-container
-			//- Additional required wrapper
-			.swiper-wrapper
-				//- Slides
-				.swiper-slide
-					.swiper-slide-inner-wrapper
-						.slide-tag 
-							strong #Perspective&nbsp;
-							| &nbsp;|&nbsp;&nbsp;38k Shares
-						h3 Employee Wellness:
-						h4 Two Parts Perspiration, One Part Persistence
-						p Added for you on 12.14.14
+
+
+		//- script will add automatically the scroll effect class here
+		.mkbl-slide-container
+			//- START SLIDE
+			div.mkbl-slide( data-gradient='')
+				.mkbl-slide-bg(style='background:url(img/slideBackground.jpg) no-repeat; background-size: cover')
+				.mkbl-slide-inner-wrapper
+					.slide-tag 
+						strong #Perspective&nbsp;
+						| &nbsp;|&nbsp;&nbsp;38k Shares
+					h3 Healthcare Consumerism: 
+					h4 The Significance of Real-Time Mobile Infrastructure 
+					p Added for you on 12.14.14
+					.mkbl-slider-bottom-group
 						hr
-						h6 A shift to individual healthcare.
-						p.slide-body
+						h6.mkbl-slide-body A shift to individual healthcare.
+						p.mkbl-slide-body
 							| Healthcare consumers are gaining control over how and with whom — they spend their healthcare dollars. 
-				.swiper-slide
-					.swiper-slide-inner-wrapper
-						.slide-tag 
-							strong #Perspective&nbsp;
-							| &nbsp;|&nbsp;&nbsp;38k Shares
-						h3 Healthcare Consumerism: 
-						h4 The Rise of the Empowered Healthcare Consumer
-						p Added for you on 12.14.14
+
+			//- END SLIDE
+			//- START SLIDE
+			div.mkbl-slide( data-gradient='')
+				.mkbl-slide-bg(style='background:url(img/slideBackground.jpg) no-repeat; background-size: cover')
+				.mkbl-slide-inner-wrapper
+					.slide-tag 
+						strong #CaseStudy&nbsp;
+						| &nbsp;|&nbsp;&nbsp;38k Shares
+					h3 Healthcare Consumerism: 
+					h4 Travel Planning 2020: The Journey Toward Market Prosperity 
+					p Added for you on 12.14.14
+					.mkbl-slider-bottom-group
 						hr
-						h6 A shift to individual healthcare.
-						p.slide-body
+						h6.mkbl-slide-body A shift to individual healthcare.
+						p.mkbl-slide-body
 							| Healthcare consumers are gaining control over how and with whom — they spend their healthcare dollars. 
-				.swiper-slide
-					.swiper-slide-inner-wrapper
-						.slide-tag 
-							strong #CaseStudy&nbsp;
-							| &nbsp;|&nbsp;&nbsp;42k Shares
-						h3 Healthcare Consumerism: 
-						h4 Your 12 Step Guide to Analytics Driven Healthcare
-						p Added for you on 12.14.14
+
+			//- END SLIDE
+			//- START SLIDE
+			div.mkbl-slide( data-gradient='')
+				.mkbl-slide-bg(style='background:url(img/slideBackground.jpg) no-repeat; background-size: cover')
+				.mkbl-slide-inner-wrapper
+					.slide-tag 
+						strong #Perspective&nbsp;
+						| &nbsp;|&nbsp;&nbsp;38k Shares
+					h3 Healthcare Consumerism: 
+					h4  Gamifying Business to Drive Employee Engagement and Performance 
+					p Added for you on 12.14.14
+					.mkbl-slider-bottom-group
 						hr
-						h6 A shift to individual healthcare.
-						p.slide-body
+						h6.mkbl-slide-body A shift to individual healthcare.
+						p.mkbl-slide-body
 							| Healthcare consumers are gaining control over how and with whom — they spend their healthcare dollars. 
-			//- If we need pagination
-			.swiper-pagination
-			//- If we need navigation buttons
-			.swiper-button-prev
-			.swiper-button-next
-			//- If we need scrollbar
-			//- .swiper-scrollbar
+
+			//- END SLIDE
+			//- START SLIDE
+			div.mkbl-slide( data-gradient='')
+				.mkbl-slide-bg(style='background:url(img/slideBackground.jpg) no-repeat; background-size: cover')
+				.mkbl-slide-inner-wrapper
+					.slide-tag 
+						strong #CaseStudy&nbsp;
+						| &nbsp;|&nbsp;&nbsp;38k Shares
+					h3 Healthcare Consumerism: 
+					h4 The Rise of the Empowered Healthcare Consumer
+					p Added for you on 12.14.14
+					.mkbl-slider-bottom-group
+						hr
+						h6.mkbl-slide-body A shift to individual healthcare.
+						p.mkbl-slide-body
+							| Healthcare consumers are gaining control over how and with whom — they spend their healthcare dollars. 
+			//- END SLIDE
+			//- START SLIDE
+			div.mkbl-slide( data-gradient='')
+				.mkbl-slide-bg(style='background:url(img/slideBackground.jpg) no-repeat; background-size: cover')
+				.mkbl-slide-inner-wrapper
+					.slide-tag 
+						strong #Perspective&nbsp;
+						| &nbsp;|&nbsp;&nbsp;38k Shares
+					h3 Healthcare Consumerism: 
+					h4 The Rise of the Empowered Healthcare Consumer
+					p Added for you on 12.14.14
+					.mkbl-slider-bottom-group
+						hr
+						h6.mkbl-slide-body A shift to individual healthcare.
+						p.mkbl-slide-body
+							| Healthcare consumers are gaining control over how and with whom — they spend their healthcare dollars. 
+			//- END SLIDE
+
+		//- START NAVIGATION ARROWS
+		i#js-next-arrow.mkbl-next-arrow.mkbl-slide-nav
+			svg: use(xlink:href='#icon-carrot')
+		i#js-prev-arrow.mkbl-prev-arrow.mkbl-slide-nav
+			svg: use(xlink:href='#icon-carrot')
+		//- END NAVIGATION ARROWS
+
 
 		script(src='app.js')
 		//- Google Analytics: change UA-XXXXX-X to be your site's ID.

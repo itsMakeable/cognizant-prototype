@@ -25,30 +25,30 @@ gulp.task 'styl', ->
 			]
 			include: ['src/styl']
 			url: true
+			'include css': true
 		})
 		.pipe $.rename('index.css')
 		.pipe gulp.dest('./.tmp/css')
 
-# gulp.task 'copycss', ->
-# 	return gulp.src('./src/css/**/*.css')
-# 		.pipe $.order [
-# 			'flexslider.css'
-# 			'slider.css'
-# 		]
-# 		.pipe $.concat('css.css')
-# 		.pipe($.cssmin())
-# 		.pipe gulp.dest('./.tmp/css')
-# 		.pipe(browserSync.reload({stream:true}))
+gulp.task 'copycss', ->
+	return gulp.src('./src/css/**/*.css')
+		.pipe $.order [
+			'flexslider.css'
+			'slider.css'
+		]
+		.pipe $.concat('css.css')
+		.pipe($.cssmin())
+		.pipe gulp.dest('./src/styl')
+		.pipe(browserSync.reload({stream:true}))
 
 gulp.task 'css', ->
 	return gulp.src('./.tmp/css/*.css')
 		# .pipe $.importCss()
-		.pipe $.order [
-			'swiper.css'
-			'index.css'
-		]
+		# .pipe $.order [
+		# 	'swiper.css'
+		# 	'index.css'
+		# ]
 		.pipe $.concat('index.css')
-		
 		.pipe $.cssmin()
 		.pipe gulp.dest('app')
 		.pipe(browserSync.reload({stream:true}))
