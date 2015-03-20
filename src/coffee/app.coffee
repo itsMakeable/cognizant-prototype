@@ -13,7 +13,7 @@ Mkbl.setActiveSlide = (s) ->
 		.removeClass('slide-active')
 		.removeClass('slide-after-1')
 		.removeClass('slide-after-2')
-		.css('background-image', 'none')
+		# .css('background-image', 'none')
 
 	i = 0
 	while i < Mkbl.numberOfSlides
