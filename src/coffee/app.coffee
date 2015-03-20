@@ -59,13 +59,13 @@ Mkbl.formInit = ->
 	# Mkbl.mainInput.on 'input', ->
 	# 	Mkbl.activeInput.parent().addClass('is-typing')
 
-	currentField = 'field-name'
+	currentField = null
 	$('.mkbl-form-subfields .mkbl-fieldset').on 'click', ->
 		nextField = $(this).attr('id')
 		hasError = false
 
-		$('#enter-' + currentField).find('input').trigger('focus')
-		$(this).addClass('is-active')
+		
+		# $(this).addClass('is-active')
 
 		if currentField == nextField
 			return
@@ -74,13 +74,14 @@ Mkbl.formInit = ->
 
 		checkInputValue = ->
 			if currentFieldVal == ''
-				# console.log('error!')
-				# hasError = true
-				$('#enter-' + currentField)
-					.addClass('is-hidden')
-				$('#'+ currentField)
-					.removeClass('is-typing')
-					.removeClass('is-active')
+				console.log('error!')
+				hasError = true
+				$('#enter-' + currentField).find('input').trigger('focus')
+				$('#enter-' + currentField).find('input')
+					.addClass('has-error')
+				#$('#'+ currentField)
+				#	.removeClass('is-typing')
+				#	.removeClass('is-active')
 				Mkbl.setProgress()
 			else
 				console.log currentField
@@ -95,10 +96,12 @@ Mkbl.formInit = ->
 		setInputValue = ->
 			$('#enter-' + nextField)
 				.removeClass('is-hidden')
-				.find('.mkbl-main-input')
-				.val($('#' + nextField + ' .mkbl-subinput').text())
-			$(this)
+			$('#' + nextField)
 				.addClass('is-active')
+				.removeClass('is-clean')
+			$('#enter-' + nextField)
+				.find('.mkbl-main-input')
+				.trigger('focus')
 			Mkbl.setProgress()
 
 		if currentField != null
@@ -109,10 +112,16 @@ Mkbl.formInit = ->
 					checkInputValue()
 				when 'field-org'
 					checkInputValue()
+				when 'field-phone'
+					checkInputValue()
+				when 'field-region'
+					checkInputValue()
 				when 'field-inquiry'
 					checkInputValue()
 		if !hasError
-			$(this).addClass('is-active')
+			
+			console.log nextField
+			# $(this).addClass('is-active')
 			switch nextField
 				when 'field-name'
 					setInputValue()
@@ -120,12 +129,14 @@ Mkbl.formInit = ->
 					setInputValue()
 				when 'field-org'
 					setInputValue()
+				when 'field-phone'
+					setInputValue()
+				when 'field-region'
+					setInputValue()
 				when 'field-inquiry'
 					setInputValue()
-
 			currentField = nextField
 
-			$('#enter-' + currentField).find('input').trigger('focus')
 
 	# Mkbl.mainInput.on 'keydown', (e) ->
 	# 	keyCode = e.keyCode or e.which
@@ -152,7 +163,7 @@ Mkbl.setProgress = ->
 $ ->	
 	Mkbl.slideInit $('.mkbl-slide-container')
 	Mkbl.formInit()
-
+	$('#field-name').click()
 	$('#js-next-arrow').on 'click', ->
 		Mkbl.nextSlide()
 
