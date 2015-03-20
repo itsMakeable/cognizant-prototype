@@ -13,6 +13,7 @@ $input
 	margin-top 50px
 	position relative
 	width 100%
+	transition all 0.4s ease-in 0s
 	&.is-hidden
 		display none
 	&.is-active
@@ -33,6 +34,19 @@ $input
 	&.is-filled
 		.mkbl-label
 			top -10px
+	&.is-typing
+		svg circle
+			&:nth-of-type(3)
+				-webkit-animation sparkle 0.8s infinite 0s
+				animation sparkle 0.8s infinite 0s
+			&:nth-of-type(2)
+				-webkit-animation sparkle 0.8s infinite 0.2s
+				animation sparkle 0.8s infinite 0.2s
+			&:nth-of-type(1)
+				-webkit-animation sparkle 0.8s infinite 0.4s
+				animation sparkle 0.8s infinite 0.4s
+		
+
 .hide-overflow
 	overflow hidden
 .mkbl-fieldset-bg
@@ -48,16 +62,19 @@ $input
 	group()
 	.mkbl-fieldset
 		col(1/3, cycle:3, gutter: 6)
+		
+		transform translateX(0px)
 		@media screen and (max-width: 960px)
 			col(1/2, cycle:2, uncycle:1, gutter: 6)
 		@media screen and (max-width: 620px)
 			col(1/1, cycle:1, uncycle:2, gutter: 6)	
 		&.is-clean
+			transform translateY(-40px)
 			.mkbl-label
-				opacity 0.3
+				opacity 0
 			.mkbl-subinput
 				// width 0%
-				opacity 0.5
+				opacity 0
 		&.is-filled,
 		&.is-active
 			opacity 1
@@ -96,7 +113,7 @@ $input
 		top 0
 		bottom 0
 		margin auto
-		color green
+		color darkblue
 		opacity 0
 		transition all 0.3s ease
 	
@@ -149,6 +166,8 @@ $input
 	margin auto
 	size 32px
 	color blue
+	&.mkbl-down-arrow
+		transform rotate(450deg)
 
 .mkbl-select
 	-webkit-appearance: none
@@ -173,4 +192,28 @@ $input
 		color darkblue
 		background: white
 		
-	
+.mkbl-form-hint
+	position absolute
+	right 0
+	top -40px
+	margin-top 5px
+	color darkgray
+	fs(1.6rem)
+	font-family ProximaNovaItalic
+	opacity 0
+	transform translateX(-16px)
+	transition all 0.3s ease-out
+	&.is-displayed
+		opacity 1
+		transform translateX(0px)
+	i
+		width 25px
+		height 20px
+		position relative 
+		top 6px
+		margin-right 5px
+		color lightblue
+	span
+		position relative
+		top 1px
+		margin-right 24px

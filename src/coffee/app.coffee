@@ -54,11 +54,11 @@ Mkbl.formInit = ->
 	Mkbl.progressDenominator = $('.mkbl-form-subfields .mkbl-fieldset').length
 
 	currentField = null
+
 	$('.mkbl-form-subfields .mkbl-fieldset').on 'click', ->
 		nextField = $(this).attr('id')
 		hasError = false
 
-		
 		# $(this).addClass('is-active')
 
 		if currentField == nextField
@@ -68,7 +68,6 @@ Mkbl.formInit = ->
 
 		checkInputValue = ->
 			if currentFieldVal == ''
-				
 				hasError = true
 				$('#enter-' + currentField).find('input').trigger('focus')
 				$('#enter-' + currentField).find('input')
@@ -78,7 +77,6 @@ Mkbl.formInit = ->
 				#	.removeClass('is-active')
 				Mkbl.setProgress()
 			else
-				
 				$('#' + currentField + ' .mkbl-subinput')
 					.html(currentFieldVal)
 				$('#enter-' + currentField)
@@ -90,6 +88,7 @@ Mkbl.formInit = ->
 		setInputValue = ->
 			$('#enter-' + nextField)
 				.removeClass('is-hidden')
+			
 			$('#' + nextField)
 				.addClass('is-active')
 				.removeClass('is-clean')
@@ -97,6 +96,20 @@ Mkbl.formInit = ->
 				.find('.mkbl-main-input')
 				.trigger('focus')
 			Mkbl.setProgress()
+
+		keypressTimeout = null
+		
+		$('#enter-' + nextField).find('.mkbl-main-input').on 'keydown', ->
+			deanimateEllipse = ->
+				$('#' + nextField).removeClass('is-typing')
+			
+			$('#' + nextField).addClass('is-typing')
+
+			if timeout
+				clearTimeout timeout
+				timeout = null
+				animateEllipse
+			timeout = setTimeout(deanimateEllipse, 1500)
 
 		if currentField != null
 			switch currentField
@@ -129,15 +142,23 @@ Mkbl.formInit = ->
 					setInputValue()
 			currentField = nextField
 
+		$('.mkbl-main-input').one 'keypress', ->
+			if $('.mkbl-main-input').is('input')
+				$('.mkbl-form-hint.is-input').addClass('is-displayed')
+		$('.mkbl-select').on 'focus', ->
+			$('.mkbl-form-hint.is-select').addClass('is-displayed')
+		$('.mkbl-main-input').on 'blur', ->
+			$('.mkbl-form-hint').removeClass('is-displayed')
 
-	Mkbl.mainInput.on 'keypress', (e) ->
+	Mkbl.mainInput.on 'keydown', (e) ->
 		
 		keyCode = e.keyCode or e.which
 		# tab
 		if keyCode == 9 || keyCode == 13
+			# console.log e.keyCode
 			e.preventDefault()
 			if ($(this).closest('fieldset').attr('id') == 'enter-field-inquiry')
-				checkInputValue()
+				# checkInputValue()
 				$('.mkbl-button').trigger('focus')
 			else
 				$('.mkbl-form-subfields fieldset.is-active').next().click()
@@ -147,6 +168,7 @@ Mkbl.formInit = ->
 Mkbl.setProgress = ->
 	progressDividend = $('.mkbl-form-subfields .mkbl-fieldset.is-filled').length
 	$('.mkbl-form-progress-bar-progress').css('width', ((progressDividend/Mkbl.progressDenominator) * 100) + '%')
+
 
 $ ->	
 	Mkbl.slideInit $('.mkbl-slide-container')
