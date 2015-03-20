@@ -47,15 +47,15 @@ html.no-js(lang='')
 								svg: use(xlink:href='#icon-carrot')
 						fieldset#enter-field-region.mkbl-fieldset.is-hidden
 							label.mkbl-main-label What is your region?*
-							div.hide-overflow
-								select.mkbl-main-input.mkbl-select
-									option(value='') Select Your Region
-									option(value='North America') North America
-									option(value='South America') South America
-									option(value='Europe') Europe
-									option(value='Middle East') Middle East
-									option(value='APAC') APAC
-									option(value='India') India
+							//- div.hide-overflow
+							//- 	select.mkbl-main-input.mkbl-select
+							//- 		option(value='') Select Your Region
+							//- 		option(value='North America') North America
+							//- 		option(value='South America') South America
+							//- 		option(value='Europe') Europe
+							//- 		option(value='Middle East') Middle East
+							//- 		option(value='APAC') APAC
+							//- 		option(value='India') India
 							input.mkbl-main-input.mkbl-sselect(type="text" placeholder='Select Your Region')
 							.mkbl-select-bg
 								div.mkbl-select-option.is-active North America
@@ -68,15 +68,23 @@ html.no-js(lang='')
 								svg: use(xlink:href='#icon-carrot')
 						fieldset#enter-field-inquiry.mkbl-fieldset.is-hidden
 							label.mkbl-main-label What type of inquiry is this?*
-							div.hide-overflow
-								select.mkbl-main-input.mkbl-select(type="text")
-									option(value='') Select Inquiry Type
-									option(value='Alliance') Alliance
-									option(value='Alumni') Alumni
-									option(value='Career Services') Career Services
-									option(value='Investor Relations') Investor Relations
-									option(value='Media') Media
-									option(value='Request for Services') Request for Services
+							//- div.hide-overflow
+							//- 	select.mkbl-main-input.mkbl-select(type="text")
+							//- 		option(value='') Select Inquiry Type
+							//- 		option(value='Alliance') Alliance
+							//- 		option(value='Alumni') Alumni
+							//- 		option(value='Career Services') Career Services
+							//- 		option(value='Investor Relations') Investor Relations
+							//- 		option(value='Media') Media
+							//- 		option(value='Request for Services') Request for Services
+							input.mkbl-main-input.mkbl-sselect(type="text" placeholder='Select Inquiry Type')
+							.mkbl-select-bg
+								div.mkbl-select-option.is-active Alliance
+								div.mkbl-select-option Alumni
+								div.mkbl-select-option Career Services
+								div.mkbl-select-option Investor Relations
+								div.mkbl-select-option Media
+								div.mkbl-select-option Request for Services
 							i.js-form-next.mkbl-down-arrow.mkbl-form-arrow
 								svg: use(xlink:href='#icon-carrot')
 						.mkbl-form-progress-bar
