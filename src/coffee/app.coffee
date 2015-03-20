@@ -143,7 +143,7 @@ Mkbl.formInit = ->
 					setInputValue()
 			currentField = nextField
 
-		$('.mkbl-select').on 'focus', ->
+		$('.mkbl-sselect').on 'focus', ->
 			$('.mkbl-form-hint.is-input').removeClass('is-displayed')
 			$('.mkbl-form-hint.is-select').addClass('is-displayed')
 		$('.mkbl-main-input').on 'blur', ->
@@ -157,7 +157,7 @@ Mkbl.formInit = ->
 			$('.mkbl-form-subfields fieldset.is-active').next().click()
 
 	Mkbl.mainInput.on 'keydown', (e) ->
-		if $(this).is('input')
+		if !$(this).hasClass('.mkbl-sselect')
 			$('.mkbl-form-hint.is-input').addClass('is-displayed')
 		keyCode = e.keyCode or e.which
 		# tab
@@ -165,9 +165,10 @@ Mkbl.formInit = ->
 			e.preventDefault()
 			if $(this).is('.mkbl-sselect')
 				selectOption = $('.mkbl-select-bg.is-open .is-active').text()
-				# $('.mkbl-form').find('.mkbl-select option[value="' + selectOption + '"]').trigger('change')
-				$('.mkbl-sselect').val(selectOption)
+				Mkbl.mainInput.val(selectOption)
 				$('.mkbl-form-subfields fieldset.is-active').next().click()
+				$(this).next('.mkbl-select-bg').removeClass('is-open')
+				$('.mkbl-sselect').val('')
 			else
 				if ($(this).closest('fieldset').is(':last-of-type'))
 					# checkInputValue()
@@ -177,6 +178,7 @@ Mkbl.formInit = ->
 		# Down
 		else if keyCode == 40
 			e.preventDefault()
+			$('.mkbl-form-hint.is-select').removeClass('is-displayed')
 			selectActive = $('.mkbl-form').find('.mkbl-select-bg.is-open .is-active')
 			selectActive.removeClass('is-active')
 			selectActive.next().addClass('is-active')
@@ -184,12 +186,13 @@ Mkbl.formInit = ->
 		# Up
 		else if keyCode == 38
 			e.preventDefault()
+			$('.mkbl-form-hint.is-select').removeClass('is-displayed')
 			selectActive = $('.mkbl-form').find('.mkbl-select-bg.is-open .is-active')
 			selectActive.removeClass('is-active')
 			selectActive.prev().addClass('is-active')
 
-	Mkbl.mainInput.on 'change', (e) ->
-		if $(this).is('select')
+	Mkbl.mainInput.on 'focus', (e) ->
+		if $(this).hasClass('.mkbl-sselect')
 			$('.mkbl-form-hint.is-select').removeClass('is-displayed')
 			$('.mkbl-form-hint.is-input').addClass('is-displayed')
  		
@@ -216,8 +219,6 @@ $ ->
 		$(this).addClass('is-active')
 
 	$('.mkbl-select-option').on 'click', ->
-		console.log $('.mkbl-select option[value="' + $(this).text() + '"]')
-		# $('.mkbl-form').find('.mkbl-select option[value="' + $(this).text() + '"]').trigger('change')
 		$('.mkbl-sselect').val($(this).text())
 		$('.mkbl-form-subfields fieldset.is-active').next().click()
 
