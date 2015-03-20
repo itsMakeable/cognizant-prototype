@@ -2,16 +2,10 @@
 <!-- Generator: Adobe Illustrator 17.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="icon-tab" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="396.667px" height="338.667px" viewBox="-46.833 -179.5 396.667 338.667"
-	 enable-background="new -46.833 -179.5 396.667 338.667" xml:space="preserve">
-<g fill='currentColor'>
-	<polygon points="245.731,9.573 300.103,63.945 -16.527,63.945 -16.527,70.927 300.106,70.927 245.731,125.298 250.667,130.234 
-		313.467,67.438 250.667,4.637 	"/>
-	<rect x="317.265" y="4.637" width="6.981" height="125.597"/>
-</g>
-<g fill='currentColor'>
-	<polygon points="61.988,-134.99 7.616,-80.618 324.246,-80.618 324.246,-73.637 7.613,-73.637 61.988,-19.265 57.052,-14.329 
-		-5.748,-77.126 57.052,-139.926 	"/>
-	<rect x="-16.527" y="-139.926" width="6.981" height="125.597"/>
+	 width="26px" height="21px" viewBox="0 0 26 21" enable-background="new 0 0 26 21" xml:space="preserve">
+	 <g fill="currentColor" >
+<polygon points="18.685,5.581 17.765,6.5 21.113,9.848 0.198,9.848 0.198,11.148 21.114,11.148 17.765,14.496 18.685,15.416 
+	23.602,10.499 "/>
+<rect x="24.502" y="5.581" width="1.3" height="9.795"/>
 </g>
 </svg>

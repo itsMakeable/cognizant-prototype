@@ -48,8 +48,8 @@ html.no-js(lang='')
 								svg: use(xlink:href='#icon-carrot')
 						fieldset#enter-field-region.mkbl-fieldset.is-hidden
 							label.mkbl-main-label What is your region?*
-							div.hide-overflow
-								select.mkbl-main-input.mkbl-select(type="text")
+							div.hide-overflow(style='position:absolute;left:-9999;opacity:0')
+								select.mkbl-main-input.mkbl-select
 									option(value='') Select Your Region
 									option(value='North America') North America
 									option(value='South America') South America
@@ -57,12 +57,21 @@ html.no-js(lang='')
 									option(value='Middle East') Middle East
 									option(value='APAC') APAC
 									option(value='India') India
+							input.mkbl-main-input.mkbl-sselect(type="text" value='Select Your Region')
+							.mkbl-select-bg.is-open 
+								div.mkbl-select-option.is-active North America
+								div.mkbl-select-option South America
+								div.mkbl-select-option Europe
+								div.mkbl-select-option Middle East
+								div.mkbl-select-option APAC
+								div.mkbl-select-option India
 							i.js-form-next.mkbl-down-arrow.mkbl-form-arrow
 								svg: use(xlink:href='#icon-carrot')
 						fieldset#enter-field-inquiry.mkbl-fieldset.is-hidden
 							label.mkbl-main-label What type of inquiry is this?*
 							div.hide-overflow
 								select.mkbl-main-input.mkbl-select(type="text")
+									option(value='') Select Inquiry Type
 									option(value='Alliance') Alliance
 									option(value='Alumni') Alumni
 									option(value='Career Services') Career Services
@@ -79,8 +88,8 @@ html.no-js(lang='')
 							span.mkbl-input-hint TAB to Continue
 						.mkbl-form-hint.is-select
 							i
-								svg: use(xlink:href='#icon-tab')
-							span.mkbl-select-hint Use up &amp; down arrows
+								svg: use(xlink:href='#icon-updown')
+							span.mkbl-select-hint Use arrows to select
 					.mkbl-form-subfields
 						fieldset#field-name.mkbl-fieldset.is-clean
 							label.mkbl-label(for="") Name*
