@@ -1,7 +1,3 @@
-:focus
-	outline:none
-::-moz-focus-inner
-	border:0
 $input
 	background-color rgba(0,0,0,0)
 	border: 0px solid transparent
@@ -9,6 +5,8 @@ $input
 	color blue
 	&:focus
 		background-color rgba(0,0,0,0.1)
+		
+
 
 .mkbl-fieldset
 	display block
@@ -50,6 +48,10 @@ $input
 	group()
 	.mkbl-fieldset
 		col(1/3, cycle:3, gutter: 6)
+		@media screen and (max-width: 960px)
+			col(1/2, cycle:2, uncycle:1, gutter: 6)
+		@media screen and (max-width: 620px)
+			col(1/1, cycle:1, uncycle:2, gutter: 6)	
 		&.is-clean
 			.mkbl-label
 				opacity 0.3

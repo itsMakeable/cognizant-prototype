@@ -19,89 +19,93 @@ html.no-js(lang='')
 		//- 		|	browser. Please 
 		//- 		a(href='http://browsehappy.com/') upgrade your browser
 		//- 		|	to improve your experience.
+		nav
+			a(href='/') Slider
+			a(href='/form.html') Form
 		.mkbl-wrapper
-			form.mkbl-form
-				.mkbl-form-main-field
-					fieldset#enter-field-name.mkbl-fieldset.is-hidden
-						label.mkbl-main-label What is your Name?* 
-						input.mkbl-main-input(type="text")
-						i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
-							svg: use(xlink:href='#icon-carrot')
-					fieldset#enter-field-email.mkbl-fieldset.is-hidden
-						label.mkbl-main-label What is your email?* 
-						input.mkbl-main-input(type="text")
-						i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
-							svg: use(xlink:href='#icon-carrot')
-					fieldset#enter-field-org.mkbl-fieldset.is-hidden
-						label.mkbl-main-label What is your Organization?* 
-						input.mkbl-main-input(type="text")
-						i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
-							svg: use(xlink:href='#icon-carrot')
-					fieldset#enter-field-phone.mkbl-fieldset.is-hidden
-						label.mkbl-main-label What is your Phone Number?* 
-						input.mkbl-main-input(type="text")
-						i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
-							svg: use(xlink:href='#icon-carrot')
-					fieldset#enter-field-region.mkbl-fieldset.is-hidden
-						label.mkbl-main-label What is your region?*
-						div.hide-overflow
-							select.mkbl-main-input.mkbl-select(type="text")
-								option(value='') Select Your Region
-								option(value='North America') North America
-								option(value='South America') South America
-								option(value='Europe') Europe
-								option(value='Middle East') Middle East
-								option(value='APAC') APAC
-								option(value='India') India
-						i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
-							svg: use(xlink:href='#icon-carrot')
-					fieldset#enter-field-inquiry.mkbl-fieldset.is-hidden
-						label.mkbl-main-label What type of inquiry is this?*
-						div.hide-overflow
-							select.mkbl-main-input.mkbl-select(type="text")
-								option(value='Alliance') Alliance
-								option(value='Alumni') Alumni
-								option(value='Career Services') Career Services
-								option(value='Investor Relations') Investor Relations
-								option(value='Media') Media
-								option(value='Request for Services') Request for Services
-						i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
-							svg: use(xlink:href='#icon-carrot')
-					.mkbl-form-progress-bar
-						.mkbl-form-progress-bar-progress
+			.center
+				form.mkbl-form
+					.mkbl-form-main-field
+						fieldset#enter-field-name.mkbl-fieldset.is-hidden
+							label.mkbl-main-label What is your Name?* 
+							input.mkbl-main-input(type="text")
+							i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
+								svg: use(xlink:href='#icon-carrot')
+						fieldset#enter-field-email.mkbl-fieldset.is-hidden
+							label.mkbl-main-label What is your email?* 
+							input.mkbl-main-input(type="text")
+							i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
+								svg: use(xlink:href='#icon-carrot')
+						fieldset#enter-field-org.mkbl-fieldset.is-hidden
+							label.mkbl-main-label What is your Organization?* 
+							input.mkbl-main-input(type="text")
+							i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
+								svg: use(xlink:href='#icon-carrot')
+						fieldset#enter-field-phone.mkbl-fieldset.is-hidden
+							label.mkbl-main-label What is your Phone Number?* 
+							input.mkbl-main-input(type="text")
+							i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
+								svg: use(xlink:href='#icon-carrot')
+						fieldset#enter-field-region.mkbl-fieldset.is-hidden
+							label.mkbl-main-label What is your region?*
+							div.hide-overflow
+								select.mkbl-main-input.mkbl-select(type="text")
+									option(value='') Select Your Region
+									option(value='North America') North America
+									option(value='South America') South America
+									option(value='Europe') Europe
+									option(value='Middle East') Middle East
+									option(value='APAC') APAC
+									option(value='India') India
+							i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
+								svg: use(xlink:href='#icon-carrot')
+						fieldset#enter-field-inquiry.mkbl-fieldset.is-hidden
+							label.mkbl-main-label What type of inquiry is this?*
+							div.hide-overflow
+								select.mkbl-main-input.mkbl-select(type="text")
+									option(value='Alliance') Alliance
+									option(value='Alumni') Alumni
+									option(value='Career Services') Career Services
+									option(value='Investor Relations') Investor Relations
+									option(value='Media') Media
+									option(value='Request for Services') Request for Services
+							i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
+								svg: use(xlink:href='#icon-carrot')
+						.mkbl-form-progress-bar
+							.mkbl-form-progress-bar-progress
 
-				.mkbl-form-subfields
-					fieldset#field-name.mkbl-fieldset.is-clean
-						label.mkbl-label(for="") Name*
-						div.mkbl-subinput
-							i: svg: use(xlink:href='#icon-ellipse')
-						div.mkbl-fieldset-bg
-					fieldset#field-email.mkbl-fieldset.is-clean
-						label.mkbl-label(for="") Email*
-						div.mkbl-subinput
-							i: svg: use(xlink:href='#icon-ellipse')
-						div.mkbl-fieldset-bg
-					fieldset#field-org.mkbl-fieldset.is-clean
-						label.mkbl-label(for="") Organization*
-						div.mkbl-subinput
-							i: svg: use(xlink:href='#icon-ellipse')
-						div.mkbl-fieldset-bg
-					fieldset#field-phone.mkbl-fieldset.is-clean
-						label.mkbl-label(for="") Phone Number*
-						div.mkbl-subinput
-							i: svg: use(xlink:href='#icon-ellipse')
-						div.mkbl-fieldset-bg
-					fieldset#field-region.mkbl-fieldset.is-clean
-						label.mkbl-label(for="") Region*
-						div.mkbl-subinput
-							i: svg: use(xlink:href='#icon-ellipse')
-						div.mkbl-fieldset-bg
-					fieldset#field-inquiry.mkbl-fieldset.is-clean
-						label.mkbl-label(for="") Inquiry Type*
-						div.mkbl-subinput
-							i: svg: use(xlink:href='#icon-ellipse')
-						div.mkbl-fieldset-bg
-			button.mkbl-button Submit
+					.mkbl-form-subfields
+						fieldset#field-name.mkbl-fieldset.is-clean
+							label.mkbl-label(for="") Name*
+							div.mkbl-subinput
+								i: svg: use(xlink:href='#icon-ellipse')
+							div.mkbl-fieldset-bg
+						fieldset#field-email.mkbl-fieldset.is-clean
+							label.mkbl-label(for="") Email*
+							div.mkbl-subinput
+								i: svg: use(xlink:href='#icon-ellipse')
+							div.mkbl-fieldset-bg
+						fieldset#field-org.mkbl-fieldset.is-clean
+							label.mkbl-label(for="") Organization*
+							div.mkbl-subinput
+								i: svg: use(xlink:href='#icon-ellipse')
+							div.mkbl-fieldset-bg
+						fieldset#field-phone.mkbl-fieldset.is-clean
+							label.mkbl-label(for="") Phone Number*
+							div.mkbl-subinput
+								i: svg: use(xlink:href='#icon-ellipse')
+							div.mkbl-fieldset-bg
+						fieldset#field-region.mkbl-fieldset.is-clean
+							label.mkbl-label(for="") Region*
+							div.mkbl-subinput
+								i: svg: use(xlink:href='#icon-ellipse')
+							div.mkbl-fieldset-bg
+						fieldset#field-inquiry.mkbl-fieldset.is-clean
+							label.mkbl-label(for="") Inquiry Type*
+							div.mkbl-subinput
+								i: svg: use(xlink:href='#icon-ellipse')
+							div.mkbl-fieldset-bg
+					button.mkbl-button Submit
 
 		script(src='app.js')
 		//- Google Analytics: change UA-XXXXX-X to be your site's ID.

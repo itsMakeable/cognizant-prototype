@@ -41,7 +41,7 @@
 		padding-bottom 12px
 	p
 		color white
-		font-family ProximaNova			
+		font-family ProximaNovaLight
 	.mkbl-slide-body
 		opacity 0
 		// transform translateY(20px)
@@ -93,11 +93,20 @@
 	transform translate(-140%,-50%) scale(0.8)
 	transition all 0.9s cubic-bezier(0.68, 0, 0.5, 1.05)
 	opacity 1
+	&:hover
+		border-top 1px solid rgba(255,255,255,0.9)
+		border-bottom 1px solid rgba(255,255,255,0.9)
+		transition all 0.3s cubic-bezier(0.68, 0, 0.5, 1.05)
+		
 	
 .slide-after-1
 	transform translate(40%,-50%) scale(0.8)
 	transition all 0.9s cubic-bezier(0.68, 0, 0.5, 1.05)
 	opacity 1
+	&:hover
+		border-top 1px solid rgba(255,255,255,0.9)
+		border-bottom 1px solid rgba(255,255,255,0.9)
+		transition all 0.3s cubic-bezier(0.68, 0, 0.5, 1.05)
 
 .slide-after-2
 	transform translate(0%,-50%) scale(0.6)
@@ -105,23 +114,43 @@
 	opacity 0
 	
 .mkbl-slide-nav
-	@extend $vertical-align
-	size 7rem
+	// @extend $vertical-align
+	position absolute
+	size 7rem 100%
+	padding 20px
 	opacity 1
 	transition opacity 0.3s ease, transform 0.1s ease
-	margin-top 0px
-	&:hover
-		opacity 0.6
+	// margin-top 0px
+	z-index 100
+	cursor pointer
+	svg
+		position absolute
+		top 0
+		bottom 0
+		left 0
+		right 0
+		margin auto
+	// &:hover
+	// 	opacity 0.6
+	@media screen and (max-width: 1260px)
+		background-color black
+		background: -moz-linear-gradient(90deg, rgba(darkblue,0) 0%, black 100%)
+		background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,rgba(darkblue,0)), color-stop(100%,black))
+		background: -webkit-linear-gradient(90deg, rgba(darkblue,0) 0%,black 100%)
+		background: -o-linear-gradient(90deg, rgba(darkblue,0) 0%,black 100%)
+		background: -ms-linear-gradient(90deg, rgba(darkblue,0) 0%,black 100%)
+		background: linear-gradient(90deg, rgba(darkblue,0) 0%,black 100%)
+
 		
 .mkbl-right-arrow
 	right 0
 	transform rotate(360deg)
-	&:active
-		transform rotate(360deg) scale(0.9)
+	// &:active
+	// 	transform rotate(360deg) scale(0.9)
 		
 .mkbl-left-arrow
 	left 0
 	transform rotate(180deg)
 	transform-origin 50% 50%
-	&:active
-		transform rotate(180deg) scale(0.9)
+	// &:active
+	// 	transform rotate(180deg) scale(0.9)

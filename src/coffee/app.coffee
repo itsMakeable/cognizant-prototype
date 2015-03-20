@@ -52,12 +52,6 @@ Mkbl.prevSlide = ->
 Mkbl.formInit = ->
 	Mkbl.mainInput = $('.mkbl-main-input')
 	Mkbl.progressDenominator = $('.mkbl-form-subfields .mkbl-fieldset').length
-	# Mkbl.mainInput.on 'focus', ->
-	# 	Mkbl.activeInput = $('.mkbl-subinput:empty').eq(0)
-	# 	Mkbl.activeInput.parent().addClass('is-active')
-
-	# Mkbl.mainInput.on 'input', ->
-	# 	Mkbl.activeInput.parent().addClass('is-typing')
 
 	currentField = null
 	$('.mkbl-form-subfields .mkbl-fieldset').on 'click', ->
@@ -74,7 +68,7 @@ Mkbl.formInit = ->
 
 		checkInputValue = ->
 			if currentFieldVal == ''
-				console.log('error!')
+				
 				hasError = true
 				$('#enter-' + currentField).find('input').trigger('focus')
 				$('#enter-' + currentField).find('input')
@@ -84,7 +78,7 @@ Mkbl.formInit = ->
 				#	.removeClass('is-active')
 				Mkbl.setProgress()
 			else
-				console.log currentField
+				
 				$('#' + currentField + ' .mkbl-subinput')
 					.html(currentFieldVal)
 				$('#enter-' + currentField)
@@ -119,8 +113,6 @@ Mkbl.formInit = ->
 				when 'field-inquiry'
 					checkInputValue()
 		if !hasError
-			
-			console.log nextField
 			# $(this).addClass('is-active')
 			switch nextField
 				when 'field-name'
@@ -138,27 +130,23 @@ Mkbl.formInit = ->
 			currentField = nextField
 
 
-	# Mkbl.mainInput.on 'keydown', (e) ->
-	# 	keyCode = e.keyCode or e.which
-	# 	if keyCode == 9
-	# 		e.preventDefault()
-	# 		formInputExchange()
+	Mkbl.mainInput.on 'keypress', (e) ->
+		
+		keyCode = e.keyCode or e.which
+		# tab
+		if keyCode == 9 || keyCode == 13
+			e.preventDefault()
+			if ($(this).closest('fieldset').attr('id') == 'enter-field-inquiry')
+				checkInputValue()
+				$('.mkbl-button').trigger('focus')
+			else
+				$('.mkbl-form-subfields fieldset.is-active').next().click()
+
+
  		
 Mkbl.setProgress = ->
 	progressDividend = $('.mkbl-form-subfields .mkbl-fieldset.is-filled').length
 	$('.mkbl-form-progress-bar-progress').css('width', ((progressDividend/Mkbl.progressDenominator) * 100) + '%')
-
-# Mkbl.nextInput = ->
-# 	if Mkbl.mainInput.val() != ''
-# 		$('.mkbl-fieldset')
-# 			.removeClass('is-active')
-# 			.removeClass('is-typing')
-# 		Mkbl.activeInput.parent().addClass('is-filled')
-# 		Mkbl.activeInput.val(Mkbl.mainInput.val())
-
-# 		Mkbl.activeInput = Mkbl.activeInput.next('.mkbl-subinput:empty')
-# 		Mkbl.activeInput.parent().addClass('is-active')
-# 		Mkbl.mainInput.focus().val('')
 
 $ ->	
 	Mkbl.slideInit $('.mkbl-slide-container')
@@ -167,8 +155,15 @@ $ ->
 	$('#js-next-arrow').on 'click', ->
 		Mkbl.nextSlide()
 
+	$('.mkbl-slide-container').on 'click', '.slide-after-1', ->
+		Mkbl.nextSlide()
+
 	$('#js-prev-arrow').on 'click', ->
+		Mkbl.prevSlide()
+	$('.mkbl-slide-container').on 'click', '.slide-before-1', ->
 		Mkbl.prevSlide()
 
 	$('.js-form-next').on 'click', ->
 		Mkbl.nextInput()
+
+	$('.center').addClass('is-on')
