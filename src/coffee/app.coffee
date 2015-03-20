@@ -221,7 +221,8 @@ $ ->
 	$('.mkbl-select-option').on 'click', ->
 		$('.mkbl-sselect').val($(this).text())
 		$('.mkbl-form-subfields fieldset.is-active').next().click()
-
+		$(this).closest('.mkbl-select-bg').removeClass('is-open')
+		$('.mkbl-sselect').val('')
 	$('.mkbl-slide-container').on 'click', '.slide-before-1', ->
 		Mkbl.prevSlide()
 
