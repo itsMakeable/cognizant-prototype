@@ -89,7 +89,8 @@ Mkbl.formInit = ->
 		setInputValue = ->
 			$('#enter-' + nextField)
 				.removeClass('is-hidden')
-			
+				.find('.mkbl-select-bg')
+				.addClass('is-open')
 			$('#' + nextField)
 				.addClass('is-active')
 				.removeClass('is-clean')
@@ -164,7 +165,8 @@ Mkbl.formInit = ->
 			e.preventDefault()
 			if $(this).is('.mkbl-sselect')
 				selectOption = $('.mkbl-select-bg.is-open .is-active').text()
-				$('.mkbl-select').find('option').val(selectOption).trigger('change')
+				$('.mkbl-form').find('.mkbl-select option:contains(' + selectOption + ')').trigger('change')
+				$('.mkbl-form-subfields fieldset.is-active').next().click()
 			else
 				if ($(this).closest('fieldset').is(':last-of-type'))
 					# checkInputValue()
@@ -181,6 +183,7 @@ Mkbl.formInit = ->
 			selectActive = $('.mkbl-form').find('.mkbl-select-bg.is-open .is-active')
 			selectActive.removeClass('is-active')
 			selectActive.prev().addClass('is-active')
+
 	Mkbl.mainInput.on 'change', (e) ->
 		if $(this).is('select')
 			$('.mkbl-form-hint.is-select').removeClass('is-displayed')
@@ -203,6 +206,15 @@ $ ->
 
 	$('#js-prev-arrow').on 'click', ->
 		Mkbl.prevSlide()
+
+	$('.mkbl-select-option').on 'mouseover', ->
+		$('.mkbl-select-option').removeClass('is-active')
+		$(this).addClass('is-active')
+		
+	$('.mkbl-select-option').on 'click', ->
+		$('.mkbl-form').find('.mkbl-select option:contains(' + $(this).text() + ')').trigger('change')
+		$('.mkbl-form-subfields fieldset.is-active').next().click()
+
 	$('.mkbl-slide-container').on 'click', '.slide-before-1', ->
 		Mkbl.prevSlide()
 

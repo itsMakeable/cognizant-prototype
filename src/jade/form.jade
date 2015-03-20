@@ -23,7 +23,6 @@ html.no-js(lang='')
 			a(href='index.html') Slider
 			a(href='form.html') Form
 		.mkbl-wrapper
-			.center
 				form.mkbl-form
 					.mkbl-form-main-field
 						fieldset#enter-field-name.mkbl-fieldset.is-hidden
@@ -33,7 +32,7 @@ html.no-js(lang='')
 								svg: use(xlink:href='#icon-carrot')
 						fieldset#enter-field-email.mkbl-fieldset.is-hidden
 							label.mkbl-main-label What is your email?* 
-							input.mkbl-main-input(type="text")
+							input.mkbl-main-input(type="email")
 							i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
 								svg: use(xlink:href='#icon-carrot')
 						fieldset#enter-field-org.mkbl-fieldset.is-hidden
@@ -43,12 +42,12 @@ html.no-js(lang='')
 								svg: use(xlink:href='#icon-carrot')
 						fieldset#enter-field-phone.mkbl-fieldset.is-hidden
 							label.mkbl-main-label What is your Phone Number?* 
-							input.mkbl-main-input(type="text")
+							input.mkbl-main-input(type="tel")
 							i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
 								svg: use(xlink:href='#icon-carrot')
 						fieldset#enter-field-region.mkbl-fieldset.is-hidden
 							label.mkbl-main-label What is your region?*
-							div.hide-overflow(style='position:absolute;left:-9999;opacity:0')
+							div.hide-overflow
 								select.mkbl-main-input.mkbl-select
 									option(value='') Select Your Region
 									option(value='North America') North America
@@ -57,8 +56,8 @@ html.no-js(lang='')
 									option(value='Middle East') Middle East
 									option(value='APAC') APAC
 									option(value='India') India
-							input.mkbl-main-input.mkbl-sselect(type="text" value='Select Your Region')
-							.mkbl-select-bg.is-open 
+							input.mkbl-main-input.mkbl-sselect(type="text" placeholder='Select Your Region')
+							.mkbl-select-bg
 								div.mkbl-select-option.is-active North America
 								div.mkbl-select-option South America
 								div.mkbl-select-option Europe
