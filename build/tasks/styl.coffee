@@ -37,7 +37,7 @@ gulp.task 'copycss', ->
 			'slider.css'
 		]
 		.pipe $.concat('css.css')
-		.pipe($.cssmin())
+		# .pipe($.cssmin())
 		.pipe gulp.dest('./src/styl')
 		.pipe(browserSync.reload({stream:true}))
 
@@ -49,7 +49,7 @@ gulp.task 'css', ->
 		# 	'index.css'
 		# ]
 		.pipe $.concat('index.css')
-		.pipe $.cssmin()
+		# .pipe $.cssmin()
 		.pipe gulp.dest('app')
 		.pipe(browserSync.reload({stream:true}))
 

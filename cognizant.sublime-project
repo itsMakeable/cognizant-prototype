@@ -7,7 +7,7 @@
 			"folder_exclude_patterns": [
 				// ".tmp",
 				"node_modules",
-				"app"
+				// "app"
 			],
 			"file_exclude_patterns": []
 		}
