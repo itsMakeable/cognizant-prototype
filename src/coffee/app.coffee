@@ -1,10 +1,22 @@
 Mkbl = {}
 
-Mkbl.slideInit = (el) ->
-	Mkbl.slider = el
+Mkbl.slideInit = ->
+	Mkbl.slider = $('.mkbl-slide-container')
 	Mkbl.numberOfSlides = Mkbl.slider.find('.mkbl-slide').length
 	Mkbl.activeSlide = 0
 	Mkbl.setActiveSlide Mkbl.activeSlide
+
+	$('#js-next-arrow').on 'click', ->
+		Mkbl.nextSlide()
+
+	$('.mkbl-slide-container').on 'click', '.slide-after-1', ->
+		Mkbl.nextSlide()
+
+	$('#js-prev-arrow').on 'click', ->
+		Mkbl.prevSlide()
+
+	$('.mkbl-slide-container').on 'click', '.slide-before-1', ->
+		Mkbl.prevSlide()
 
 Mkbl.setActiveSlide = (s) ->
 	$('.mkbl-slide')
@@ -49,105 +61,85 @@ Mkbl.prevSlide = ->
 			Mkbl.slider.removeClass('locked')
 		, 800
 
-Mkbl.formInit = ->
-	Mkbl.mainInput = $('.mkbl-main-input')
-	Mkbl.progressDenominator = $('.mkbl-form-subfields .mkbl-fieldset').length
 
-	currentField = null
+Mkbl.currentField = null
+Mkbl.timeout = null
+
+Mkbl.saveField = (currentField) ->
+	hasError = false
+	currentFieldVal = $('#enter-' + currentField).find('.mkbl-main-input').val()
+	if currentFieldVal == '' || !$('#enter-' + currentField).hasClass('is-clean')
+		hasError = true
+		$('#enter-' + currentField).find('input').trigger('focus')
+		$('#enter-' + currentField).find('input')
+			.addClass('has-error')
+	else
+		$('#' + currentField + ' .mkbl-subinput')
+			.html(currentFieldVal)
+		$('#enter-' + currentField)
+			.addClass('is-hidden')
+		$('#'+ currentField)
+			.removeClass('is-active')
+			.addClass('is-filled')
+	return !hasError
+
+Mkbl.prepareField = (nextField) ->
+	$('#enter-' + nextField)
+		.removeClass('is-hidden')
+		.find('.mkbl-select-bg')
+		.addClass('is-open')
+	$('#' + nextField)
+		.addClass('is-active')
+		.removeClass('is-clean')
+	$('#enter-' + nextField)
+		.find('.mkbl-main-input')
+		.trigger('focus')
+	Mkbl.currentField = nextField
+	Mkbl.setProgress()
+
+Mkbl.moveToField = (nextField) ->
+	if Mkbl.currentField == nextField
+		return
+	
+	if Mkbl.currentField != null
+		success = Mkbl.saveField(Mkbl.currentField)
+
+	if (success)
+		Mkbl.prepareField(nextField)
+
+	Mkbl.setProgress()
+
+Mkbl.setProgress = ->
+	progressDenominator = $('.mkbl-form-subfields .mkbl-fieldset').length
+	progressDividend = $('.mkbl-form-subfields .mkbl-fieldset.is-filled').length
+	$('.mkbl-form-progress-bar-progress').css('width', ((progressDividend/progressDenominator) * 100) + '%')
+
+Mkbl.formInit = ->
 
 	$('.mkbl-form-subfields .mkbl-fieldset').on 'click', ->
-
 		nextField = $(this).attr('id')
-		hasError = false
+		Mkbl.moveToField nextField
 
-		# $(this).addClass('is-active')
+	$('.mkbl-main-input').on 'keydown', ->
+		thisField = $(this).closest('fieldset').attr('id').substring(6)
 
-		if currentField == nextField
-			return
+		deanimateEllipse = ->
+			$('#' + thisField).removeClass('is-typing')
+		animateEllipse = ->
+			$('#' + thisField).addClass('is-typing')
 
-		currentFieldVal = $('#enter-' + currentField).find('.mkbl-main-input').val()
+		animateEllipse()
+		if Mkbl.timeout
+			clearTimeout Mkbl.timeout
+			Mkbl.timeout = null
+		Mkbl.timeout = setTimeout(deanimateEllipse, 1500)
 
-		checkInputValue = ->
-			if currentFieldVal == ''
-				hasError = true
-				$('#enter-' + currentField).find('input').trigger('focus')
-				$('#enter-' + currentField).find('input')
-					.addClass('has-error')
-				#$('#'+ currentField)
-				#	.removeClass('is-typing')
-				#	.removeClass('is-active')
-				Mkbl.setProgress()
-			else
-				$('#' + currentField + ' .mkbl-subinput')
-					.html(currentFieldVal)
-				$('#enter-' + currentField)
-					.addClass('is-hidden')
-				$('#'+ currentField)
-					.removeClass('is-active')
-					.addClass('is-filled')
-
-		setInputValue = ->
-			$('#enter-' + nextField)
-				.removeClass('is-hidden')
-				.find('.mkbl-select-bg')
-				.addClass('is-open')
-			$('#' + nextField)
-				.addClass('is-active')
-				.removeClass('is-clean')
-			$('#enter-' + nextField)
-				.find('.mkbl-main-input')
-				.trigger('focus')
-			Mkbl.setProgress()
-
-		keypressTimeout = null
-		
-		$('#enter-' + nextField).find('.mkbl-main-input').on 'keydown', ->
-			deanimateEllipse = ->
-				$('#' + nextField).removeClass('is-typing')
-			animateEllipse = ->
-				$('#' + nextField).addClass('is-typing')
-
-			animateEllipse()
-			if timeout
-				clearTimeout timeout
-				timeout = null
-			timeout = setTimeout(deanimateEllipse, 1500)
-
-		if currentField != null
-			switch currentField
-				when 'field-name'
-					checkInputValue()
-				when 'field-email'
-					checkInputValue()
-				when 'field-org'
-					checkInputValue()
-				when 'field-phone'
-					checkInputValue()
-				when 'field-region'
-					checkInputValue()
-				when 'field-inquiry'
-					checkInputValue()
-		if !hasError
-			switch nextField
-				when 'field-name'
-					setInputValue()
-				when 'field-email'
-					setInputValue()
-				when 'field-org'
-					setInputValue()
-				when 'field-phone'
-					setInputValue()
-				when 'field-region'
-					setInputValue()
-				when 'field-inquiry'
-					setInputValue()
-			currentField = nextField
-
-		$('.mkbl-sselect').on 'focus', ->
-			$('.mkbl-form-hint.is-input').removeClass('is-displayed')
-			$('.mkbl-form-hint.is-select').addClass('is-displayed')
-		$('.mkbl-main-input').on 'blur', ->
-			$('.mkbl-form-hint').removeClass('is-displayed')
+	$('.mkbl-sselect').on 'focus', ->
+		$('.mkbl-form-hint.is-input').removeClass('is-displayed')
+		$('.mkbl-form-hint.is-select').addClass('is-displayed')
+	
+	$('.mkbl-main-input').on 'blur', ->
+		$('.mkbl-form-hint').removeClass('is-displayed')
 
 	$('.js-form-next').on 'click', (e) ->
 		if ($(this).closest('fieldset').is(':last-of-type'))
@@ -156,7 +148,8 @@ Mkbl.formInit = ->
 		else
 			$('.mkbl-form-subfields fieldset.is-active').next().click()
 
-	Mkbl.mainInput.on 'keydown', (e) ->
+	$('.mkbl-main-input').on 'keydown', (e) ->
+		thisField = $(this).closest('fieldset').attr('id').substring(6)
 		if !$(this).hasClass('.mkbl-sselect')
 			$('.mkbl-form-hint.is-input').addClass('is-displayed')
 		keyCode = e.keyCode or e.which
@@ -171,10 +164,12 @@ Mkbl.formInit = ->
 				$('.mkbl-sselect').val('')
 			else
 				if ($(this).closest('fieldset').is(':last-of-type'))
-					# checkInputValue()
-					$('.mkbl-button').trigger('focus')
+					success = Mkbl.saveField(thisField)
+					if (success) 
+						$('.mkbl-button').trigger('focus')
 				else
-					$('.mkbl-form-subfields fieldset.is-active').next().click()
+					nextField = $('.mkbl-form-subfields fieldset.is-active').next().attr('id')
+					Mkbl.moveToField nextField
 		# Down
 		else if keyCode == 40
 			e.preventDefault()
@@ -191,28 +186,10 @@ Mkbl.formInit = ->
 			selectActive.removeClass('is-active')
 			selectActive.prev().addClass('is-active')
 
-	Mkbl.mainInput.on 'focus', (e) ->
+	$('.mkbl-main-input').on 'focus', (e) ->
 		if $(this).hasClass('.mkbl-sselect')
 			$('.mkbl-form-hint.is-select').removeClass('is-displayed')
 			$('.mkbl-form-hint.is-input').addClass('is-displayed')
- 		
-Mkbl.setProgress = ->
-	progressDividend = $('.mkbl-form-subfields .mkbl-fieldset.is-filled').length
-	$('.mkbl-form-progress-bar-progress').css('width', ((progressDividend/Mkbl.progressDenominator) * 100) + '%')
-
-
-$ ->	
-	Mkbl.slideInit $('.mkbl-slide-container')
-	Mkbl.formInit()
-	$('#field-name').click()
-	$('#js-next-arrow').on 'click', ->
-		Mkbl.nextSlide()
-
-	$('.mkbl-slide-container').on 'click', '.slide-after-1', ->
-		Mkbl.nextSlide()
-
-	$('#js-prev-arrow').on 'click', ->
-		Mkbl.prevSlide()
 
 	$('.mkbl-select-option').on 'mouseover', ->
 		$('.mkbl-select-option').removeClass('is-active')
@@ -223,7 +200,14 @@ $ ->
 		$('.mkbl-form-subfields fieldset.is-active').next().click()
 		$(this).closest('.mkbl-select-bg').removeClass('is-open')
 		$('.mkbl-sselect').val('')
-	$('.mkbl-slide-container').on 'click', '.slide-before-1', ->
-		Mkbl.prevSlide()
+	
+	
+ 		
+$ ->	
+	Mkbl.slideInit()
+	Mkbl.formInit()
+	Mkbl.prepareField('field-name')
 
 	$('.center').addClass('is-on')
+
+	
