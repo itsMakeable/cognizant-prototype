@@ -13,8 +13,10 @@ $input
 		&:focus
 			opacity 1
 			background-color darkblue
+
 .mkbl-form-main-field
 	position relative
+	
 .mkbl-fieldset
 	display block
 	margin-top 50px
@@ -52,10 +54,7 @@ $input
 			&:nth-of-type(1)
 				-webkit-animation sparkle 0.8s infinite 0.4s
 				animation sparkle 0.8s infinite 0.4s
-		
 
-.hide-overflow
-	overflow hidden
 .mkbl-fieldset-bg
 	height 0px
 	background-color rgba(0,0,0,0)
@@ -140,6 +139,7 @@ $input
 		border-top 1px solid red
 		border-left 1px solid red
 		border-right 1px solid red
+
 .mkbl-form-progress-bar
 	width 100%
 	height 3px 
@@ -208,14 +208,14 @@ $input
 	right 0
 	top -46px
 	margin-top 5px
-	color darkgray
+	color gray
 	fs(1.5rem)
 	font-family ProximaNovaItalic
 	opacity 0
 	transform translateX(-16px)
 	transition all 0.3s ease-out
 	&.is-displayed
-		opacity 1
+		opacity 0.7
 		transform translateX(0px)
 	i
 		width 25px
@@ -257,10 +257,6 @@ $input
 	font-family ProximaNova
 	color blue
 	transition all 0.6s ease
-	// position absolute
-	// width 100%
-	// z-index 999
-	// top 100px
 	&.is-open
 		height 349px
 		transition height 0.6s ease 0.1s

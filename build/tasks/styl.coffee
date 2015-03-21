@@ -50,6 +50,7 @@ gulp.task 'css', ->
 		# ]
 		.pipe $.concat('index.css')
 		# .pipe $.cssmin()
+		.pipe $.csscomb()
 		.pipe gulp.dest('app')
 		.pipe(browserSync.reload({stream:true}))
 

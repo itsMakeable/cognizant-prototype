@@ -26,6 +26,7 @@
     "gulp-cheerio": "*",
     "gulp-coffeelint": "*",
     "gulp-concat": "*",
+    "gulp-csscomb": "^3.0.3",
     "gulp-cssfont64": "*",
     "gulp-cssmin": "*",
     "gulp-filter": "*",
