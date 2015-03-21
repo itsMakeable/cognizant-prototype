@@ -26,6 +26,7 @@ $input
 	&.is-hidden
 		display none
 	&.is-active
+		visibility visible
 		.mkbl-label
 			top -10px
 			color white
@@ -75,6 +76,7 @@ $input
 		@media screen and (max-width: 620px)
 			col(1/1, cycle:1, uncycle:2, gutter: 6)	
 		&.is-clean
+			visibility hidden
 			transform translateY(-40px)
 			.mkbl-label
 				opacity 0
@@ -256,10 +258,10 @@ $input
 	fs(1.8rem)
 	font-family ProximaNova
 	color blue
-	transition all 0.6s ease
+	transition height 0.4s ease-out 0.1s
 	&.is-open
 		height 349px
-		transition height 0.6s ease 0.1s
+		transition height 0.4s ease-out
 		.mkbl-select-option
 			// display block
 			opacity 1

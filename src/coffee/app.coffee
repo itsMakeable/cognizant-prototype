@@ -89,8 +89,15 @@ Mkbl.saveField = (currentField) ->
 Mkbl.prepareField = (nextField) ->
 	$('#enter-' + nextField)
 		.removeClass('is-hidden')
-		.find('.mkbl-select-bg')
-		.addClass('is-open')
+	if $('#enter-' + nextField).find('.mkbl-select-bg').length && !$('#enter-' + nextField).prev().find('.mkbl-select-bg').length
+		setTimeout (->
+			$('#enter-' + nextField).find('.mkbl-select-bg').addClass('is-open')
+			$('.mkbl-form-hint.is-select').addClass('is-displayed')
+			return
+		), 1
+	else
+		$('#enter-' + nextField).find('.mkbl-select-bg').addClass('is-open')
+		$('.mkbl-form-hint.is-select').addClass('is-displayed')
 	$('#' + nextField)
 		.addClass('is-active')
 		.removeClass('is-clean')
@@ -142,11 +149,11 @@ Mkbl.formInit = ->
 
 	### removes hints to selects ###
 	$('.mkbl-main-input').on 'blur', ->
-		$('.mkbl-form-hint').removeClass('is-displayed')
+		$('.mkbl-form-hint.is-input').removeClass('is-displayed')
 	### the form button trigger ###
 	$('.js-form-next').on 'click', (e) ->
 		if ($(this).closest('fieldset').is(':last-of-type'))
-			console.log 'this is the last one'
+			console.log 'this is the last form field'
 			success = Mkbl.saveField(thisField)
 			if (success) 
 				$('.mkbl-button').trigger('focus')
@@ -156,7 +163,6 @@ Mkbl.formInit = ->
 	$('.mkbl-main-input').on 'keydown', (e) ->
 		thisField = $(this).closest('fieldset').attr('id').substring(6)
 		$('.mkbl-form-hint.is-input').addClass('is-displayed')
-		$('.mkbl-form-hint.is-select').removeClass('is-displayed')
 		keyCode = e.keyCode or e.which
 		# tab or enter
 		if keyCode == 9 || keyCode == 13
@@ -173,6 +179,7 @@ Mkbl.formInit = ->
 		else if keyCode == 40
 			e.preventDefault()
 			$('.mkbl-form-hint.is-select').removeClass('is-displayed')
+			$('.mkbl-form-hint.is-input').addClass('is-displayed')
 			selectActive = $('.mkbl-form').find('.mkbl-select-bg.is-open .is-active')
 			selectActive.removeClass('is-active')
 			selectActive.next().addClass('is-active')
@@ -181,6 +188,7 @@ Mkbl.formInit = ->
 		else if keyCode == 38
 			e.preventDefault()
 			$('.mkbl-form-hint.is-select').removeClass('is-displayed')
+			$('.mkbl-form-hint.is-input').addClass('is-displayed')
 			selectActive = $('.mkbl-form').find('.mkbl-select-bg.is-open .is-active')
 			selectActive.removeClass('is-active')
 			selectActive.prev().addClass('is-active')
@@ -191,29 +199,26 @@ Mkbl.formInit = ->
 			e.preventDefault()
 			if $('.mkbl-form').find('.mkbl-select-bg.is-open .is-active').length
 				console.log('option has been selected')
-				# selectOption = $('.mkbl-select-bg.is-open .is-active').text()
-				# Mkbl.mainInput.val(selectOption)
-				# $('.mkbl-form-subfields fieldset.is-active').next().click()
-				# $(this).next('.mkbl-select-bg').removeClass('is-open')
-				# $('.mkbl-sselect').val('')
-
-	$('.mkbl-select-option').on 'mouseover', ->
-		$('.mkbl-select-option').removeClass('is-active')
-		$(this).addClass('is-active')
+				# From Kyla: The following 3 lines are probably incorrect and should be deleted
+				selectOption = $('.mkbl-select-bg.is-open .is-active').text()
+				$('.mkbl-sselect').val(selectOption)
+				$('.mkbl-form-subfields fieldset.is-active').next().click()
+				$('.mkbl-sselect').val('')
+				if ($(this).closest('fieldset').is(':last-of-type'))
+					console.log 'this is the last form field'
 
 	$('.mkbl-select-option').on 'click', ->
 		console.log('option has been selected')
-		# $('.mkbl-sselect').val($(this).text())
-		# $('.mkbl-form-subfields fieldset.is-active').next().click()
-		# $(this).closest('.mkbl-select-bg').removeClass('is-open')
-		# $('.mkbl-sselect').val('')
+		# From Kyla: The following 3 lines are probably incorrect and should be deleted
+		$('.mkbl-sselect').val($(this).text())
+		$('.mkbl-form-subfields fieldset.is-active').next().click()
+		$('.mkbl-sselect').val('')
 		if ($(this).closest('fieldset').is(':last-of-type'))
-			console.log 'this is the last one'
-			success = Mkbl.saveField(thisField)
-			if (success) 
-				$('.mkbl-button').trigger('focus')
+			console.log 'this is the last form field'
 	
-	
+	$('.mkbl-select-option').on 'mouseover', ->
+		$('.mkbl-select-option').removeClass('is-active')
+		$(this).addClass('is-active')
  		
 $ ->	
 	Mkbl.slideInit()
