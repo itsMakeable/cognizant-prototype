@@ -89,15 +89,16 @@ Mkbl.saveField = (currentField) ->
 Mkbl.prepareField = (nextField) ->
 	$('#enter-' + nextField)
 		.removeClass('is-hidden')
-	if $('#enter-' + nextField).find('.mkbl-select-bg').length && !$('#enter-' + nextField).prev().find('.mkbl-select-bg').length
-		setTimeout (->
+	if $('#enter-' + nextField).find('.mkbl-select-bg').length
+		if !$('#enter-' + nextField).prev().find('.mkbl-select-bg').length
+			setTimeout (->
+				$('#enter-' + nextField).find('.mkbl-select-bg').addClass('is-open')
+				$('.mkbl-form-hint.is-select').addClass('is-displayed')
+				return
+			), 1
+		else
 			$('#enter-' + nextField).find('.mkbl-select-bg').addClass('is-open')
 			$('.mkbl-form-hint.is-select').addClass('is-displayed')
-			return
-		), 1
-	else
-		$('#enter-' + nextField).find('.mkbl-select-bg').addClass('is-open')
-		$('.mkbl-form-hint.is-select').addClass('is-displayed')
 	$('#' + nextField)
 		.addClass('is-active')
 		.removeClass('is-clean')
@@ -176,7 +177,8 @@ Mkbl.formInit = ->
 				nextField = $('.mkbl-form-subfields fieldset.is-active').next().attr('id')
 				Mkbl.moveToField nextField
 		# Down
-		else if keyCode == 40
+		if keyCode == 40
+			console.log 'up'
 			e.preventDefault()
 			$('.mkbl-form-hint.is-select').removeClass('is-displayed')
 			$('.mkbl-form-hint.is-input').addClass('is-displayed')
@@ -185,7 +187,8 @@ Mkbl.formInit = ->
 			selectActive.next().addClass('is-active')
 
 		# Up
-		else if keyCode == 38
+		if keyCode == 38
+			console.log 'down'
 			e.preventDefault()
 			$('.mkbl-form-hint.is-select').removeClass('is-displayed')
 			$('.mkbl-form-hint.is-input').addClass('is-displayed')

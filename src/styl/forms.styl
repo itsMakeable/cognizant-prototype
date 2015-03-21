@@ -208,7 +208,7 @@ $input
 .mkbl-form-hint
 	position absolute
 	right 0
-	top -46px
+	top -44px
 	margin-top 5px
 	color gray
 	fs(1.5rem)
@@ -249,7 +249,8 @@ $input
 	opacity 0
 	padding 20px 30px
 	transition opacity 0.3s ease
-
+	@media screen and (max-height: 768px) and (min-width: 1024px)
+		col(1/2, cycle:2, gutter: 0)
 .mkbl-select-bg
 	height 0px
 	position relative
@@ -262,10 +263,19 @@ $input
 	&.is-open
 		height 349px
 		transition height 0.4s ease-out
+		@media screen and (max-height: 768px) and (min-width: 1024px)
+			height 182px
 		.mkbl-select-option
 			// display block
 			opacity 1
 			background-color rgba(0,0,0,0)
 			transition opacity 0.4s ease 0.4s, background-color 0.2s ease
+			span
+				position relative
+				left 0
+				transition 0.3s ease
 			&.is-active
-				background-color rgba(0,0,0,0.1)
+				background-color rgba(0,0,0,0.05)
+				span
+					left 5px
+					
