@@ -84,6 +84,7 @@ Mkbl.saveField = (currentField) ->
 			.removeClass('is-active')
 			.removeClass('is-typing')
 			.addClass('is-filled')
+	Mkbl.setProgress()
 	return !hasError
 
 Mkbl.prepareField = (nextField) ->
@@ -199,25 +200,32 @@ Mkbl.formInit = ->
 	$(window).on 'keydown', (e) ->
 		keyCode = e.keyCode or e.which
 		if keyCode == 9 || keyCode == 13
-			e.preventDefault()
 			if $('.mkbl-form').find('.mkbl-select-bg.is-open .is-active').length
+				e.preventDefault()
 				console.log('option has been selected')
 				# From Kyla: The following 3 lines are probably incorrect and should be deleted
 				selectOption = $('.mkbl-select-bg.is-open .is-active').text()
-				$('.mkbl-sselect').val(selectOption)
-				$('.mkbl-form-subfields fieldset.is-active').next().click()
-				$('.mkbl-sselect').val('')
+				$('#enter-' + Mkbl.currentField + ' .mkbl-sselect').val(selectOption)
+
 				if ($(this).closest('fieldset').is(':last-of-type'))
+					Mkbl.saveField Mkbl.currentField
 					console.log 'this is the last form field'
+				else
+					nextField = $('.mkbl-form-subfields fieldset.is-active').next().attr('id')
+					Mkbl.moveToField nextField
 
 	$('.mkbl-select-option').on 'click', ->
-		console.log('option has been selected')
-		# From Kyla: The following 3 lines are probably incorrect and should be deleted
-		$('.mkbl-sselect').val($(this).text())
-		$('.mkbl-form-subfields fieldset.is-active').next().click()
-		$('.mkbl-sselect').val('')
+		console.log('option has been clicked')
+		
+		selectOption = $(this).text()
+		$('#enter-' + Mkbl.currentField + ' .mkbl-sselect').val(selectOption)
+
 		if ($(this).closest('fieldset').is(':last-of-type'))
+			Mkbl.saveField Mkbl.currentField
 			console.log 'this is the last form field'
+		else
+			nextField = $('.mkbl-form-subfields fieldset.is-active').next().attr('id')
+			Mkbl.moveToField nextField
 	
 	$('.mkbl-select-option').on 'mouseover', ->
 		$('.mkbl-select-option').removeClass('is-active')
