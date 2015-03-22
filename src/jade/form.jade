@@ -16,114 +16,113 @@ html.no-js(lang='')
 			a(href='index.html') Slider
 			a(href='form.html') Form
 		.mkbl-wrapper
-				form.mkbl-form
-					.mkbl-form-main-field
-						fieldset#enter-field-name.mkbl-fieldset.is-hidden
-							label.mkbl-main-label What is your Name?* 
-							input.mkbl-main-input(type="text")
-							i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
-								svg: use(xlink:href='#icon-carrot')
-						fieldset#enter-field-email.mkbl-fieldset.is-hidden
-							label.mkbl-main-label What is your email?* 
-							input.mkbl-main-input(type="email")
-							i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
-								svg: use(xlink:href='#icon-carrot')
-						fieldset#enter-field-org.mkbl-fieldset.is-hidden
-							label.mkbl-main-label What is your Organization?* 
-							input.mkbl-main-input(type="text")
-							i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
-								svg: use(xlink:href='#icon-carrot')
-						fieldset#enter-field-phone.mkbl-fieldset.is-hidden
-							label.mkbl-main-label What is your Phone Number?* 
-							input.mkbl-main-input(type="tel")
-							i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
-								svg: use(xlink:href='#icon-carrot')
-						fieldset#enter-field-region.mkbl-fieldset.is-hidden
-							label.mkbl-main-label What is your region?*
+			form.mkbl-form
+				.mkbl-form-main-field
+					fieldset#enter-field-name.mkbl-fieldset.is-hidden
+						label.mkbl-main-label What is your Name?* 
+						input.mkbl-main-input(type="text" autocomplete = "off")
+						i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
+							svg: use(xlink:href='#icon-carrot')
+					fieldset#enter-field-email.mkbl-fieldset.is-hidden
+						label.mkbl-main-label What is your email?* 
+						input.mkbl-main-input(type="email" autocomplete = "off")
+						i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
+							svg: use(xlink:href='#icon-carrot')
+					fieldset#enter-field-org.mkbl-fieldset.is-hidden
+						label.mkbl-main-label What is your Organization?* 
+						input.mkbl-main-input(type="text" autocomplete = "off")
+						i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
+							svg: use(xlink:href='#icon-carrot')
+					fieldset#enter-field-phone.mkbl-fieldset.is-hidden
+						label.mkbl-main-label What is your Phone Number?* 
+						input.mkbl-main-input(type="tel" autocomplete = "off")
+						i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
+							svg: use(xlink:href='#icon-carrot')
+					fieldset#enter-field-region.mkbl-fieldset.is-hidden
+						label.mkbl-main-label What is your region?*
+						input.mkbl-main-input.mkbl-sselect(type="text" placeholder='Select Region' disabled autocomplete = "off")
+						.mkbl-select-bg
+							div.mkbl-select-option: span North America
+							div.mkbl-select-option: span South America
+							div.mkbl-select-option: span Europe
+							div.mkbl-select-option: span Middle East
+							div.mkbl-select-option: span APAC
+							div.mkbl-select-option: span India
+						i.js-form-next.mkbl-down-arrow.mkbl-form-arrow
+							svg: use(xlink:href='#icon-carrot')
+					fieldset#enter-field-inquiry.mkbl-fieldset.is-hidden
+						label.mkbl-main-label What type of inquiry is this?*
+						input.mkbl-main-input.mkbl-sselect(type="text" placeholder='Select Inquiry Type' disabled autocomplete = "off")
+						.mkbl-select-bg
+							div.mkbl-select-option: span Alliance
+							div.mkbl-select-option: span Alumni
+							div.mkbl-select-option: span Career Services
+							div.mkbl-select-option: span Investor Relations
+							div.mkbl-select-option: span Media
+							div.mkbl-select-option: span Request for Services
+						i.js-form-next.mkbl-down-arrow.mkbl-form-arrow
+							svg: use(xlink:href='#icon-carrot')
+					.mkbl-form-progress-bar
+						.mkbl-form-progress-bar-progress
+					.mkbl-form-hint.is-input
+						i
+							svg: use(xlink:href='#icon-tab')
+						span.mkbl-input-hint TAB to Continue
+					.mkbl-form-hint.is-select
+						i
+							svg: use(xlink:href='#icon-updown')
+						span.mkbl-select-hint Use arrows to select
+				.mkbl-form-subfields
+					fieldset#field-name.mkbl-fieldset.is-clean
+						label.mkbl-label(for="") Name*
+						div.mkbl-subinput
+							i: svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', width='62px', height='32.667px', viewbox='0 0 62 32.667', enable-background='new 0 0 62 32.667', xml:space='preserve')
+									circle.circle-3(fill='currentColor', cx='45', cy='16', r='4')
+									circle.circle-2(fill='currentColor', cx='32', cy='16', r='4')
+									circle.circle-1(fill='currentColor', cx='19', cy='16', r='4')
 
-							input.mkbl-main-input.mkbl-sselect(type="text" placeholder='Select Region' disabled)
-							.mkbl-select-bg
-								div.mkbl-select-option: span North America
-								div.mkbl-select-option: span South America
-								div.mkbl-select-option: span Europe
-								div.mkbl-select-option: span Middle East
-								div.mkbl-select-option: span APAC
-								div.mkbl-select-option: span India
-							i.js-form-next.mkbl-down-arrow.mkbl-form-arrow
-								svg: use(xlink:href='#icon-carrot')
-						fieldset#enter-field-inquiry.mkbl-fieldset.is-hidden
-							label.mkbl-main-label What type of inquiry is this?*
-
-							input.mkbl-main-input.mkbl-sselect(type="text" placeholder='Select Inquiry Type' disabled)
-							.mkbl-select-bg
-								div.mkbl-select-option: span Alliance
-								div.mkbl-select-option: span Alumni
-								div.mkbl-select-option: span Career Services
-								div.mkbl-select-option: span Investor Relations
-								div.mkbl-select-option: span Media
-								div.mkbl-select-option: span Request for Services
-							i.js-form-next.mkbl-down-arrow.mkbl-form-arrow
-								svg: use(xlink:href='#icon-carrot')
-						.mkbl-form-progress-bar
-							.mkbl-form-progress-bar-progress
-						.mkbl-form-hint.is-input
-							i
-								svg: use(xlink:href='#icon-tab')
-							span.mkbl-input-hint TAB to Continue
-						.mkbl-form-hint.is-select
-							i
-								svg: use(xlink:href='#icon-updown')
-							span.mkbl-select-hint Use arrows to select
-					.mkbl-form-subfields
-						fieldset#field-name.mkbl-fieldset.is-clean
-							label.mkbl-label(for="") Name*
-							div.mkbl-subinput
-								i: svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', width='62px', height='32.667px', viewbox='0 0 62 32.667', enable-background='new 0 0 62 32.667', xml:space='preserve')
-										circle.circle-3(fill='currentColor', cx='45', cy='16', r='4')
-										circle.circle-2(fill='currentColor', cx='32', cy='16', r='4')
-										circle.circle-1(fill='currentColor', cx='19', cy='16', r='4')
-
-							div.mkbl-fieldset-bg
-						fieldset#field-email.mkbl-fieldset.is-clean
-							label.mkbl-label(for="") Email*
-							div.mkbl-subinput
-								i: svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', width='62px', height='32.667px', viewbox='0 0 62 32.667', enable-background='new 0 0 62 32.667', xml:space='preserve')
-										circle.circle-3(fill='currentColor', cx='45', cy='16', r='4')
-										circle.circle-2(fill='currentColor', cx='32', cy='16', r='4')
-										circle.circle-1(fill='currentColor', cx='19', cy='16', r='4')
-							div.mkbl-fieldset-bg
-						fieldset#field-org.mkbl-fieldset.is-clean
-							label.mkbl-label(for="") Organization*
-							div.mkbl-subinput
-								i: svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', width='62px', height='32.667px', viewbox='0 0 62 32.667', enable-background='new 0 0 62 32.667', xml:space='preserve')
-										circle.circle-3(fill='currentColor', cx='45', cy='16', r='4')
-										circle.circle-2(fill='currentColor', cx='32', cy='16', r='4')
-										circle.circle-1(fill='currentColor', cx='19', cy='16', r='4')
-							div.mkbl-fieldset-bg
-						fieldset#field-phone.mkbl-fieldset.is-clean
-							label.mkbl-label(for="") Phone Number*
-							div.mkbl-subinput
-								i: svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', width='62px', height='32.667px', viewbox='0 0 62 32.667', enable-background='new 0 0 62 32.667', xml:space='preserve')
-										circle.circle-3(fill='currentColor', cx='45', cy='16', r='4')
-										circle.circle-2(fill='currentColor', cx='32', cy='16', r='4')
-										circle.circle-1(fill='currentColor', cx='19', cy='16', r='4')
-							div.mkbl-fieldset-bg
-						fieldset#field-region.mkbl-fieldset.is-clean
-							label.mkbl-label(for="") Region*
-							div.mkbl-subinput
-								i: svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', width='62px', height='32.667px', viewbox='0 0 62 32.667', enable-background='new 0 0 62 32.667', xml:space='preserve')
-										circle.circle-3(fill='currentColor', cx='45', cy='16', r='4')
-										circle.circle-2(fill='currentColor', cx='32', cy='16', r='4')
-										circle.circle-1(fill='currentColor', cx='19', cy='16', r='4')
-							div.mkbl-fieldset-bg
-						fieldset#field-inquiry.mkbl-fieldset.is-clean
-							label.mkbl-label(for="") Inquiry Type*
-							div.mkbl-subinput
-								i: svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', width='62px', height='32.667px', viewbox='0 0 62 32.667', enable-background='new 0 0 62 32.667', xml:space='preserve')
-										circle.circle-3(fill='currentColor', cx='45', cy='16', r='4')
-										circle.circle-2(fill='currentColor', cx='32', cy='16', r='4')
-										circle.circle-1(fill='currentColor', cx='19', cy='16', r='4')
-							div.mkbl-fieldset-bg
-					button.mkbl-button Submit
+						div.mkbl-fieldset-bg
+					fieldset#field-email.mkbl-fieldset.is-clean
+						label.mkbl-label(for="") Email*
+						div.mkbl-subinput
+							i: svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', width='62px', height='32.667px', viewbox='0 0 62 32.667', enable-background='new 0 0 62 32.667', xml:space='preserve')
+									circle.circle-3(fill='currentColor', cx='45', cy='16', r='4')
+									circle.circle-2(fill='currentColor', cx='32', cy='16', r='4')
+									circle.circle-1(fill='currentColor', cx='19', cy='16', r='4')
+						div.mkbl-fieldset-bg
+					fieldset#field-org.mkbl-fieldset.is-clean
+						label.mkbl-label(for="") Organization*
+						div.mkbl-subinput
+							i: svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', width='62px', height='32.667px', viewbox='0 0 62 32.667', enable-background='new 0 0 62 32.667', xml:space='preserve')
+									circle.circle-3(fill='currentColor', cx='45', cy='16', r='4')
+									circle.circle-2(fill='currentColor', cx='32', cy='16', r='4')
+									circle.circle-1(fill='currentColor', cx='19', cy='16', r='4')
+						div.mkbl-fieldset-bg
+					fieldset#field-phone.mkbl-fieldset.is-clean
+						label.mkbl-label(for="") Phone Number*
+						div.mkbl-subinput
+							i: svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', width='62px', height='32.667px', viewbox='0 0 62 32.667', enable-background='new 0 0 62 32.667', xml:space='preserve')
+									circle.circle-3(fill='currentColor', cx='45', cy='16', r='4')
+									circle.circle-2(fill='currentColor', cx='32', cy='16', r='4')
+									circle.circle-1(fill='currentColor', cx='19', cy='16', r='4')
+						div.mkbl-fieldset-bg
+					fieldset#field-region.mkbl-fieldset.is-clean
+						label.mkbl-label(for="") Region*
+						div.mkbl-subinput
+							i: svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', width='62px', height='32.667px', viewbox='0 0 62 32.667', enable-background='new 0 0 62 32.667', xml:space='preserve')
+									circle.circle-3(fill='currentColor', cx='45', cy='16', r='4')
+									circle.circle-2(fill='currentColor', cx='32', cy='16', r='4')
+									circle.circle-1(fill='currentColor', cx='19', cy='16', r='4')
+						div.mkbl-fieldset-bg
+					fieldset#field-inquiry.mkbl-fieldset.is-clean
+						label.mkbl-label(for="") Inquiry Type*
+						div.mkbl-subinput
+							i: svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', width='62px', height='32.667px', viewbox='0 0 62 32.667', enable-background='new 0 0 62 32.667', xml:space='preserve')
+									circle.circle-3(fill='currentColor', cx='45', cy='16', r='4')
+									circle.circle-2(fill='currentColor', cx='32', cy='16', r='4')
+									circle.circle-1(fill='currentColor', cx='19', cy='16', r='4')
+						div.mkbl-fieldset-bg
+			a(href="/form.html")
+				button.mkbl-button.mkbl-form-button Submit
 
 		script(src='app.js')

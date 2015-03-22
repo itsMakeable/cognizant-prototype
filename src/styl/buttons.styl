@@ -1,5 +1,5 @@
 .mkbl-button
-	background-color darkgray
+	background-color darkblue
 	border none
 	color white
 	padding 15px 68px
@@ -9,4 +9,11 @@
 	color lightgray
 	fs(1.6rem)
 	font-family ProximaNovaBold
+	transition all 0.2s ease
+	position relative
+	z-index 9999
+	&:disabled
+		background-color darkgray
+	&:hover
+		background-color lighten(darkblue,3)
 	

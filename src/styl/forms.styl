@@ -1,22 +1,21 @@
 $input
-	background-color rgba(0,0,0,0)
+	background-color rgba(0,0,0,0.1)
 	border: 0px solid transparent
 	width 100%
 	color blue
-	&:focus
-		background-color rgba(0,0,0,0.1)
 		
-.mkbl-form
-	button
-		opacity 0
-		transition opacity 0.3s ease
-		&:focus
-			opacity 1
-			background-color darkblue
+.mkbl-form-button
+	opacity 0
+	&.is-active,
+	&:focus
+		opacity 1
+		background-color darkblue
 
 .mkbl-form-main-field
 	position relative
-	
+	min-height 94px
+	.mkbl-fieldset
+		margin-top 0
 .mkbl-fieldset
 	display block
 	margin-top 50px
@@ -25,6 +24,7 @@ $input
 	transition all 0.4s ease-in 0s
 	&.is-hidden
 		display none
+
 	&.is-active
 		visibility visible
 		.mkbl-label
@@ -146,7 +146,8 @@ $input
 	width 100%
 	height 3px 
 	background-color lightgray
-	position relative
+	position absolute
+	bottom 0
 
 .mkbl-form-progress-bar-progress
 	width 0%
@@ -260,6 +261,7 @@ $input
 	font-family ProximaNova
 	color blue
 	transition height 0.4s ease-out 0.1s
+	overflow: hidden
 	&.is-open
 		height 349px
 		transition height 0.4s ease-out
