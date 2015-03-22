@@ -20,29 +20,29 @@ html.no-js(lang='')
 				.mkbl-form-main-field
 					fieldset#enter-field-name.mkbl-fieldset.is-hidden
 						label.mkbl-main-label What is your Name?* 
-						input.mkbl-main-input(type="text" autocomplete = "off")
+						input.mkbl-main-input(type="text" autocomplete='off' required)
 						i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
 							svg: use(xlink:href='#icon-carrot')
 					fieldset#enter-field-email.mkbl-fieldset.is-hidden
 						label.mkbl-main-label What is your email?* 
-						input.mkbl-main-input(type="email" autocomplete = "off")
+						input.mkbl-main-input(type="email" autocomplete='off' required)
 						i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
 							svg: use(xlink:href='#icon-carrot')
 					fieldset#enter-field-org.mkbl-fieldset.is-hidden
 						label.mkbl-main-label What is your Organization?* 
-						input.mkbl-main-input(type="text" autocomplete = "off")
+						input.mkbl-main-input(type="text" autocomplete='off' required)
 						i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
 							svg: use(xlink:href='#icon-carrot')
 					fieldset#enter-field-phone.mkbl-fieldset.is-hidden
 						label.mkbl-main-label What is your Phone Number?* 
-						input.mkbl-main-input(type="tel" autocomplete = "off")
+						input.mkbl-main-input(type="tel" autocomplete='off' required)
 						i.js-form-next.mkbl-right-arrow.mkbl-form-arrow
 							svg: use(xlink:href='#icon-carrot')
 					fieldset#enter-field-region.mkbl-fieldset.is-hidden
 						label.mkbl-main-label What is your region?*
-						input.mkbl-main-input.mkbl-sselect(type="text" placeholder='Select Region' disabled autocomplete = "off")
+						input.mkbl-main-input.mkbl-sselect(type="text" placeholder='Select Region' disabled autocomplete='off' required)
 						.mkbl-select-bg
-							div.mkbl-select-option.is-active: span North America
+							div.mkbl-select-option: span North America
 							div.mkbl-select-option: span South America
 							div.mkbl-select-option: span Europe
 							div.mkbl-select-option: span Middle East
@@ -52,9 +52,9 @@ html.no-js(lang='')
 							svg: use(xlink:href='#icon-carrot')
 					fieldset#enter-field-inquiry.mkbl-fieldset.is-hidden
 						label.mkbl-main-label What type of inquiry is this?*
-						input.mkbl-main-input.mkbl-sselect(type="text" placeholder='Select Inquiry Type' disabled autocomplete = "off")
+						input.mkbl-main-input.mkbl-sselect(type="text" placeholder='Select Inquiry Type' disabled autocomplete='off' required)
 						.mkbl-select-bg
-							div.mkbl-select-option.is-active: span Alliance
+							div.mkbl-select-option: span Alliance
 							div.mkbl-select-option: span Alumni
 							div.mkbl-select-option: span Career Services
 							div.mkbl-select-option: span Investor Relations
@@ -62,6 +62,8 @@ html.no-js(lang='')
 							div.mkbl-select-option: span Request for Services
 						i.js-form-next.mkbl-down-arrow.mkbl-form-arrow
 							svg: use(xlink:href='#icon-carrot')
+					.mkbl-form-complete
+						h3 Thank You!
 					.mkbl-form-progress-bar
 						.mkbl-form-progress-bar-progress
 					.mkbl-form-hint.is-input

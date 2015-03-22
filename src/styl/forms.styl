@@ -1,5 +1,5 @@
 $input
-	background-color rgba(0,0,0,0.1)
+	// background-color rgba(0,0,0,0.1)
 	border: 0px solid transparent
 	width 100%
 	color blue
@@ -9,8 +9,7 @@ $input
 	&.is-active,
 	&:focus
 		opacity 1
-		background-color darkblue
-
+	
 .mkbl-form-main-field
 	position relative
 	min-height 94px
@@ -40,7 +39,7 @@ $input
 		.mkbl-fieldset-bg
 			height 40px
 			background-color rgba(0,0,0,0.1)
-			transition all 0.4s ease-in-out 0s
+			transition all 0.4s ease-in-out 0.2s
 	&.is-filled
 		.mkbl-label
 			top -10px
@@ -71,13 +70,14 @@ $input
 		cursor pointer
 		col(1/3, cycle:3, gutter: 6)
 		transform translateX(0px)
+		transition all 0.4s ease-in 0s
 		@media screen and (max-width: 960px)
 			col(1/2, cycle:2, uncycle:1, gutter: 6)
 		@media screen and (max-width: 620px)
 			col(1/1, cycle:1, uncycle:2, gutter: 6)	
 		&.is-clean
 			visibility hidden
-			transform translateY(-40px)
+			// transform translateY(-40px)
 			.mkbl-label
 				opacity 0
 			.mkbl-subinput
@@ -131,23 +131,33 @@ $input
 	height 80px
 	fs(3.2rem)
 	padding 0 3rem
-	&.position-absolute
-		position absolute
-		left 0
-		bottom 0
-		// background-color green
+	background-color transparent
+	background-color rgba(0,0,0,0.1)
+	+ i
+		color lightgray
+	&:focus
+		// background-color rgba(0,0,0,0.1)
+		+ i
+			color lightblue
 	&.has-error
+		animation wiggle 0.2s linear
 		color red
 		border-top 1px solid red
 		border-left 1px solid red
 		border-right 1px solid red
+		&.mkbl-sselect
+			border-bottom 1px solid red
+		+ i
+			color red
 
 .mkbl-form-progress-bar
 	width 100%
 	height 3px 
 	background-color lightgray
 	position absolute
-	bottom 0
+	bottom -3px
+	&.has-error
+		animation wiggle 0.2s linear
 
 .mkbl-form-progress-bar-progress
 	width 0%
@@ -159,15 +169,13 @@ $input
 	left 0
 	transition width 0.5s cubic-bezier(0.68, 0, 0.2, 1.05) 0.2s
 	background-color green
+
+.mkbl-form-progress-bar-progress
+	background-color green
+	transition width 0.5s cubic-bezier(0.68, 0, 0.2, 1.05) 0.2s
 	
 .gradient .mkbl-form-progress-bar-progress
-	transition width 0.5s cubic-bezier(0.68, 0, 0.2, 1.05) 0.2s
-	background: -moz-linear-gradient(90deg, blue 0%, green 100%)
-	background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,blue), color-stop(100%,green))
-	background: -webkit-linear-gradient(90deg, blue 0%,green 100%)
-	background: -o-linear-gradient(90deg, blue 0%,green 100%)
-	background: -ms-linear-gradient(90deg, blue 0%,green 100%)
-	background: linear-gradient(90deg, blue 0%,green 100%)
+	@extend .gradient-2
 	
 .mkbl-form-arrow
 	position absolute
@@ -177,48 +185,49 @@ $input
 	margin auto
 	size 32px
 	color blue
+	transition all 0.4s ease-in 0s
 	&.mkbl-down-arrow
 		transform rotate(450deg)
 
-.mkbl-select
-	-webkit-appearance: none
-	background transparent
-	width 100%
-	width calc(100% +15px)
-	border-radius: 0
-	outline 0		
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	box-shadow: none
-	border: 0px solid transparent
-	position:absolute
-	left:-9999px
-	opacity:0
-	&:focus
-		outline 0
-	+ .mkbl-right-arrow
-		transform rotate(450deg)
-	option
-		border: 0px solid transparent
-		fs(1.8rem)
-		padding 16px 20px
-		box-shadow none
-		color darkblue
-		background: white
+// .mkbl-select
+// 	-webkit-appearance: none
+// 	background transparent
+// 	width 100%
+// 	width calc(100% +15px)
+// 	border-radius: 0
+// 	outline 0		
+// 	-webkit-box-shadow: none;
+// 	-moz-box-shadow: none;
+// 	box-shadow: none
+// 	border: 0px solid transparent
+// 	position:absolute
+// 	left:-9999px
+// 	opacity:0
+// 	&:focus
+// 		outline 0
+// 	+ .mkbl-right-arrow
+// 		transform rotate(450deg)
+// 	option
+// 		border: 0px solid transparent
+// 		fs(1.8rem)
+// 		padding 16px 20px
+// 		box-shadow none
+// 		color darkblue
+// 		background: white
 		
 .mkbl-form-hint
 	position absolute
 	right 0
-	top -44px
+	top -48px
 	margin-top 5px
 	color gray
-	fs(1.5rem)
+	fs(1.2rem)
 	font-family ProximaNovaItalic
 	opacity 0
 	transform translateX(-16px)
 	transition all 0.3s ease-out
 	&.is-displayed
-		opacity 0.7
+		opacity 1
 		transform translateX(0px)
 	i
 		width 25px
@@ -280,4 +289,16 @@ $input
 				background-color rgba(0,0,0,0.05)
 				span
 					left 5px
-					
+.mkbl-form-complete
+	position relative
+	z-index: -999
+	opacity 0
+	padding 20px 0px
+	position absolute
+	top 20px
+	transition opacity 0.2s ease
+	h3
+		fs(3.2rem)
+	&.is-active
+		transition opacity 0.4s ease 0.1s
+		opacity 1

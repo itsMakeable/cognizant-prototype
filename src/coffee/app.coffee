@@ -70,10 +70,11 @@ Mkbl.saveField = (currentField) ->
 	currentFieldVal = $('#enter-' + currentField).find('.mkbl-main-input').val()
 	if currentFieldVal == ''
 		# || !$('#enter-' + currentField).hasClass('is-clean')
-		console.log 'this'
 		hasError = true
 		$('#enter-' + currentField).find('input').trigger('focus')
 		$('#enter-' + currentField).find('input')
+			.addClass('has-error')
+		$('.mkbl-form-progress-bar')
 			.addClass('has-error')
 	else
 		$('#' + currentField + ' .mkbl-subinput')
@@ -83,27 +84,38 @@ Mkbl.saveField = (currentField) ->
 			.removeClass('is-active')
 			.removeClass('is-typing')
 			.addClass('is-filled')
-			# console.log $(this)
-		$('#enter-' + currentField)
-			.addClass('is-hidden')
+		$('.mkbl-form-progress-bar')
+			.removeClass('has-error')
+		if $('#enter-' + currentField).find('.mkbl-select-bg').length
+			$('#enter-' + currentField).find('.mkbl-select-bg').removeClass('is-open')
+			setTimeout (->
+				$('#enter-' + currentField).addClass('is-hidden')
+				if $('#enter-' + currentField).is(':last-of-type')
+					$('.mkbl-form-complete').addClass('is-active')
+			), 400
+			
+		else
+			$('#enter-' + currentField).addClass('is-hidden')
+			if $('#enter-' + currentField).is(':last-of-type')
+				$('.mkbl-form-complete').addClass('is-active')
+
 	Mkbl.setProgress()
 	return !hasError
 
 Mkbl.prepareField = (nextField) ->
-	$('#enter-' + nextField)
-		.removeClass('is-hidden')
+	
 	if $('#enter-' + nextField).find('.mkbl-select-bg').length
 		# if !$('#enter-' + nextField).prev().find('.mkbl-select-bg').length
 		if Mkbl.currentField != nextField
 			setTimeout (->
+				$('#enter-' + nextField).removeClass('is-hidden')
+			), 400
+			setTimeout (->
 				$('#enter-' + nextField).find('.mkbl-select-bg').addClass('is-open')
 				$('.mkbl-form-hint.is-select').addClass('is-displayed')
-				return
-			), 1
-		# else
-		# 	if Mkbl.currentField != nextField
-		# 		$('#enter-' + nextField).find('.mkbl-select-bg').addClass('is-open')
-		# 		$('.mkbl-form-hint.is-select').addClass('is-displayed')
+			), 450
+	else
+		$('#enter-' + nextField).removeClass('is-hidden')
 
 	$('#' + nextField)
 		.addClass('is-active')
@@ -122,7 +134,6 @@ Mkbl.moveToField = (nextField) ->
 		success = Mkbl.saveField(Mkbl.currentField)
 
 	if (success)
-
 		Mkbl.prepareField(nextField)
 
 	Mkbl.setProgress()
@@ -139,6 +150,7 @@ Mkbl.formInit = ->
 		nextField = $(this).attr('id')
 		Mkbl.moveToField nextField
 		$('.mkbl-button.is-active').prop('disabled', true)
+		$('.mkbl-form-complete').removeClass('is-active')
 
 	$('.mkbl-main-input').on 'keydown', ->
 		thisField = $(this).closest('fieldset').attr('id').substring(6)
@@ -179,65 +191,77 @@ Mkbl.formInit = ->
 		thisField = $(this).closest('fieldset').attr('id').substring(6)
 		$('.mkbl-form-hint.is-input').addClass('is-displayed')
 		keyCode = e.keyCode or e.which
-		# tab or enter
+		# tab or enter	
 		if keyCode == 9 || keyCode == 13
 			e.preventDefault()
-
+			$('.mkbl-select-bg').removeClass('is-open')
 			if ($(this).closest('fieldset').is(':last-of-type'))
 				setTimeout (->
 					success = Mkbl.saveField(thisField)
-					
 				), 400
 				if (success)
-					$('.mkbl-select-bg').removeClass('is-open')
-					
 					$('.mkbl-button').addClass('is-active').trigger('focus').prop('disabled', false)
 					
 			else
 				nextField = $('.mkbl-form-subfields fieldset.is-active').next().attr('id')
 				Mkbl.moveToField nextField
+		else
+			$(this).removeClass('has-error')
+			$('.mkbl-form-progress-bar')
+				.removeClass('has-error')
 
 	$(window).on 'keydown', (e) ->
 		keyCode = e.keyCode or e.which
 		if keyCode == 9 || keyCode == 13
+			e.preventDefault()
 			$('.mkbl-form-hint.is-select').removeClass('is-displayed')
 			$('.mkbl-form-hint.is-input').removeClass('is-displayed')
-			if $('.mkbl-form').find('.mkbl-select-bg.is-open .is-active').length
-				e.preventDefault()
-				
-				selectOption = $('.mkbl-select-bg.is-open .is-active').text()
-				$('#enter-' + Mkbl.currentField + ' .mkbl-sselect').val(selectOption)
-
-				nextField = $('.mkbl-form-subfields fieldset.is-active').next().attr('id')
-				if $('#enter-' + Mkbl.currentField).is(':last-of-type')
-					
-					$('.mkbl-button').addClass('is-active').trigger('focus').prop('disabled', false)
-				Mkbl.moveToField nextField
-
+			if $('.mkbl-form').find('.mkbl-select-bg.is-open').length
+				if $('.mkbl-form').find('.mkbl-select-bg.is-open .is-active').length
+					selectOption = $('.mkbl-select-bg.is-open .is-active').text()
+					$('#enter-' + Mkbl.currentField + ' .mkbl-sselect').val(selectOption)
+					nextField = $('.mkbl-form-subfields fieldset.is-active').next().attr('id')
+					if $('#enter-' + Mkbl.currentField).is(':last-of-type')
+						$('.mkbl-button').addClass('is-active').trigger('focus').prop('disabled', false)
+					Mkbl.moveToField nextField
+				else
+					$('#enter-' + Mkbl.currentField).find('input').addClass('has-error')
+					$('.mkbl-form-progress-bar').addClass('has-error')
+					$('.mkbl-form-hint.is-select').addClass('is-displayed')
 		if [40].indexOf(e.keyCode) > -1
 			e.preventDefault()
 			$('.mkbl-form-hint.is-select').removeClass('is-displayed')
 			$('.mkbl-form-hint.is-input').addClass('is-displayed')
-			selectActive = $('.mkbl-form').find('.mkbl-select-bg.is-open .is-active')
-			selectActive.removeClass('is-active')
-			if selectActive.next().is('.mkbl-select-option')
+			
+			if $('.mkbl-form').find('.mkbl-select-bg.is-open .is-active').length
+				selectActive = $('.mkbl-form').find('.mkbl-select-bg.is-open .is-active')
+				selectActive.removeClass('is-active')
 				selectActive.next().addClass('is-active')
+				$('#enter-' + Mkbl.currentField).find('input').removeClass('has-error')
+				$('.mkbl-form-progress-bar').removeClass('has-error')
 			else
+				selectActive = $('.mkbl-form').find('.mkbl-select-bg.is-open .mkbl-select-option:first-of-type')
 				$('.mkbl-select-bg.is-open .mkbl-select-option:first-of-type').addClass('is-active')
+			$('#enter-' + Mkbl.currentField + ' .mkbl-main-input').val(selectActive.text())
+				
+			
 
 		if [38].indexOf(e.keyCode) > -1
 			e.preventDefault()
 			$('.mkbl-form-hint.is-select').removeClass('is-displayed')
 			$('.mkbl-form-hint.is-input').addClass('is-displayed')
-			selectActive = $('.mkbl-form').find('.mkbl-select-bg.is-open .is-active')
-			selectActive.removeClass('is-active')
-			if selectActive.prev().is('.mkbl-select-option')
+
+			if $('.mkbl-form').find('.mkbl-select-bg.is-open .is-active').length
+				selectActive = $('.mkbl-form').find('.mkbl-select-bg.is-open .is-active')
+				selectActive.removeClass('is-active')
 				selectActive.prev().addClass('is-active')
+				$('#enter-' + Mkbl.currentField).find('input').removeClass('has-error')
+				$('.mkbl-form-progress-bar').removeClass('has-error')
 			else
+				selectActive = $('.mkbl-form').find('.mkbl-select-bg.is-open .mkbl-select-option:last-of-type')
 				$('.mkbl-select-bg.is-open .mkbl-select-option:last-of-type').addClass('is-active')
+			$('#enter-' + Mkbl.currentField + ' .mkbl-main-input').val(selectActive.text())
 
-
-		
 
 	$('.mkbl-select-option').on 'click', ->
 		console.log('option has been clicked')
@@ -254,8 +278,6 @@ Mkbl.formInit = ->
 				Mkbl.saveField Mkbl.currentField
 				
 			), 400
-			
-
 		else
 			nextField = $('.mkbl-form-subfields fieldset.is-active').next().attr('id')
 			Mkbl.moveToField nextField
@@ -264,7 +286,8 @@ Mkbl.formInit = ->
 		$('.mkbl-select-option').removeClass('is-active')
 		$(this).addClass('is-active')
 		$('#enter-' + Mkbl.currentField + ' .mkbl-main-input').val($(this).text())
-		
+		$('#enter-' + Mkbl.currentField).find('input').removeClass('has-error')
+		$('.mkbl-form-progress-bar').removeClass('has-error')
 $ ->	
 	Mkbl.slideInit()
 	Mkbl.formInit()
