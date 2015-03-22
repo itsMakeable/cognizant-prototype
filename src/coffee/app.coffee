@@ -1,5 +1,8 @@
 Mkbl = {}
 
+$.expr[':'].Contains = (a, i, m) ->
+	(a.textContent or a.innerText or '').toUpperCase().indexOf(m[3].toUpperCase()) >= 0
+
 Mkbl.slideInit = ->
 	Mkbl.slider = $('.mkbl-slide-container')
 	Mkbl.numberOfSlides = Mkbl.slider.find('.mkbl-slide').length
@@ -62,9 +65,19 @@ Mkbl.prevSlide = ->
 		, 800
 
 
+Mkbl.listFilter = (input, list) ->
+	$(input).on 'keyup', ->
+		filter = $(this).val()
+		if filter && filter != ''
+			$(list).find('li').removeClass('is-active')
+			$(list).find('li:not(:contains(' + filter + '))').removeClass('not-filtered')
+			$(list).find('li:contains(' + filter + ')').addClass('not-filtered')
+			$(list).find('li.not-filtered').eq(0).addClass('is-active')
+		else
+			$(list).find('li').addClass('not-filtered').removeClass('is-active')
+
 Mkbl.currentField = null
 Mkbl.timeout = null
-
 Mkbl.saveField = (currentField) ->
 	hasError = false
 	currentFieldVal = $('#enter-' + currentField).find('.mkbl-main-input').val()
@@ -105,14 +118,19 @@ Mkbl.saveField = (currentField) ->
 Mkbl.prepareField = (nextField) ->
 	
 	if $('#enter-' + nextField).find('.mkbl-select-bg').length
-		# if !$('#enter-' + nextField).prev().find('.mkbl-select-bg').length
+		
 		if Mkbl.currentField != nextField
 			setTimeout (->
 				$('#enter-' + nextField).removeClass('is-hidden')
 			), 400
 			setTimeout (->
 				$('#enter-' + nextField).find('.mkbl-select-bg').addClass('is-open')
+				
 				$('.mkbl-form-hint.is-select').addClass('is-displayed')
+				Mkbl.listFilter('.mkbl-sselect','.mkbl-select-bg.is-open')
+				setTimeout (->
+					$('#enter-' + nextField).find('.mkbl-main-input').trigger('focus')
+				), 1
 			), 450
 	else
 		$('#enter-' + nextField).removeClass('is-hidden')
@@ -120,9 +138,7 @@ Mkbl.prepareField = (nextField) ->
 	$('#' + nextField)
 		.addClass('is-active')
 		.removeClass('is-clean')
-	$('#enter-' + nextField)
-		.find('.mkbl-main-input')
-		.trigger('focus')
+	$
 	Mkbl.currentField = nextField
 	Mkbl.setProgress()
 
@@ -217,6 +233,7 @@ Mkbl.formInit = ->
 			$('.mkbl-form-hint.is-select').removeClass('is-displayed')
 			$('.mkbl-form-hint.is-input').removeClass('is-displayed')
 			if $('.mkbl-form').find('.mkbl-select-bg.is-open').length
+
 				if $('.mkbl-form').find('.mkbl-select-bg.is-open .is-active').length
 					selectOption = $('.mkbl-select-bg.is-open .is-active').text()
 					$('#enter-' + Mkbl.currentField + ' .mkbl-sselect').val(selectOption)
@@ -283,11 +300,13 @@ Mkbl.formInit = ->
 			Mkbl.moveToField nextField
 	
 	$('.mkbl-select-option').on 'mouseover', ->
-		$('.mkbl-select-option').removeClass('is-active')
+		$('.mkbl-select-option').addClass('not-filtered').removeClass('is-active')
 		$(this).addClass('is-active')
 		$('#enter-' + Mkbl.currentField + ' .mkbl-main-input').val($(this).text())
 		$('#enter-' + Mkbl.currentField).find('input').removeClass('has-error')
 		$('.mkbl-form-progress-bar').removeClass('has-error')
+
+
 $ ->	
 	Mkbl.slideInit()
 	Mkbl.formInit()

@@ -15,6 +15,7 @@ $input
 	min-height 94px
 	.mkbl-fieldset
 		margin-top 0
+
 .mkbl-fieldset
 	display block
 	margin-top 50px
@@ -23,7 +24,6 @@ $input
 	transition all 0.4s ease-in 0s
 	&.is-hidden
 		display none
-
 	&.is-active
 		visibility visible
 		.mkbl-label
@@ -258,9 +258,12 @@ $input
 	cursor pointer
 	opacity 0
 	padding 20px 30px
-	transition opacity 0.3s ease
+	transition all 0.3s ease
+	color lightgray
 	@media screen and (max-height: 768px) and (min-width: 1024px)
 		col(1/2, cycle:2, gutter: 0)
+	&.not-filtered
+		color lightblue
 .mkbl-select-bg
 	height 0px
 	position relative
@@ -299,6 +302,7 @@ $input
 	transition opacity 0.2s ease
 	h3
 		fs(3.2rem)
+		text-transform capitalize
 	&.is-active
 		transition opacity 0.4s ease 0.1s
 		opacity 1
