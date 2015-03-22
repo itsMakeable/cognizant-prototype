@@ -262,8 +262,7 @@ $input
 	color lightgray
 	@media screen and (max-height: 768px) and (min-width: 1024px)
 		col(1/2, cycle:2, gutter: 0)
-	&.not-filtered
-		color lightblue
+	
 .mkbl-select-bg
 	height 0px
 	position relative
@@ -281,9 +280,13 @@ $input
 			height 182px
 		.mkbl-select-option
 			// display block
-			opacity 1
+			opacity 0.5
 			background-color rgba(0,0,0,0)
-			transition opacity 0.4s ease 0.4s, background-color 0.2s ease
+			transition opacity 0.4s ease 0.2s, background-color 0.2s ease, color 0.2s ease
+			&.not-filtered
+				color lightblue
+				opacity 1
+				transition opacity 0.4s ease, background-color 0.2s ease, color 0.2s ease
 			span
 				position relative
 				left 0
