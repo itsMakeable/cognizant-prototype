@@ -160,16 +160,17 @@ Mkbl.formInit = ->
 		$('.mkbl-form-hint.is-input').removeClass('is-displayed')
 	### the form button trigger ###
 	$('.js-form-next').on 'click', (e) ->
+		thisField = $(this).closest('fieldset').attr('id').substring(6)
 		if ($(this).closest('fieldset').is(':last-of-type'))
-			$('.mkbl-select-bg').removeClass('is-open')
-			$('.mkbl-button').addClass('is-active').trigger('focus').prop('disabled', false)
-			console.log 'this is the last form field'
 			setTimeout (->
 				success = Mkbl.saveField(thisField)
+				if (success)
+					$('.mkbl-select-bg').removeClass('is-open')
+					$('.mkbl-form-hint.is-select').removeClass('is-displayed')
+					$('.mkbl-form-hint.is-input').removeClass('is-displayed')
+					$('.mkbl-button').addClass('is-active').trigger('focus').prop('disabled', false)
 			), 400
-			success = Mkbl.saveField(thisField)
-			if (success) 
-				$('.mkbl-button').addClass('is-active').trigger('focus').prop('disabled', false)
+			
 
 		else
 			$('.mkbl-form-subfields fieldset.is-active').next().click()
@@ -183,9 +184,13 @@ Mkbl.formInit = ->
 			e.preventDefault()
 
 			if ($(this).closest('fieldset').is(':last-of-type'))
-				success = Mkbl.saveField(thisField)
-				if (success) 
+				setTimeout (->
+					success = Mkbl.saveField(thisField)
+					
+				), 400
+				if (success)
 					$('.mkbl-select-bg').removeClass('is-open')
+					
 					$('.mkbl-button').addClass('is-active').trigger('focus').prop('disabled', false)
 					
 			else
@@ -195,14 +200,18 @@ Mkbl.formInit = ->
 	$(window).on 'keydown', (e) ->
 		keyCode = e.keyCode or e.which
 		if keyCode == 9 || keyCode == 13
+			$('.mkbl-form-hint.is-select').removeClass('is-displayed')
+			$('.mkbl-form-hint.is-input').removeClass('is-displayed')
 			if $('.mkbl-form').find('.mkbl-select-bg.is-open .is-active').length
 				e.preventDefault()
-				console.log('option has been selected')
-				# From Kyla: The following 3 lines are probably incorrect and should be deleted
+				
 				selectOption = $('.mkbl-select-bg.is-open .is-active').text()
 				$('#enter-' + Mkbl.currentField + ' .mkbl-sselect').val(selectOption)
 
 				nextField = $('.mkbl-form-subfields fieldset.is-active').next().attr('id')
+				if $('#enter-' + Mkbl.currentField).is(':last-of-type')
+					
+					$('.mkbl-button').addClass('is-active').trigger('focus').prop('disabled', false)
 				Mkbl.moveToField nextField
 
 		if [40].indexOf(e.keyCode) > -1
@@ -240,12 +249,12 @@ Mkbl.formInit = ->
 			$('.mkbl-select-bg').removeClass('is-open')
 			$('.mkbl-form-hint.is-select').removeClass('is-displayed')
 			$('.mkbl-form-hint.is-input').removeClass('is-displayed')
+			$('.mkbl-button').addClass('is-active').trigger('focus').prop('disabled', false)
 			setTimeout (->
 				Mkbl.saveField Mkbl.currentField
-				$('.mkbl-button').addClass('is-active').trigger('focus').prop('disabled', false)
+				
 			), 400
 			
-			console.log 'this is the last form field'
 
 		else
 			nextField = $('.mkbl-form-subfields fieldset.is-active').next().attr('id')
