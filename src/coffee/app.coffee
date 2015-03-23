@@ -90,11 +90,12 @@ Mkbl.saveField = (currentField) ->
 	if currentFieldVal == ''
 		# || !$('#enter-' + currentField).hasClass('is-clean')
 		hasError = true
+		console.log hasError
 		$('#enter-' + currentField).find('input').trigger('focus')
 		$('#enter-' + currentField).find('input').addClass('has-error')
 		$('.mkbl-form-progress-bar').addClass('has-error')
 	else
-		$('#' + currentField + ' .mkbl-subinput').html(currentFieldVal)
+		$('#' + currentField + ' .mkbl-subinput').text(currentFieldVal)
 		$('#'+ currentField)
 			.removeClass('is-active')
 			.removeClass('is-typing')
@@ -203,7 +204,7 @@ Mkbl.formInit = ->
 		else
 			$('.mkbl-form-subfields fieldset.is-active').next('.is-clean').click()
 
-	$('.mkbl-main-input').on 'keydown', (e) ->
+	$('.mkbl-main-input').on 'keyup', (e) ->
 		thisField = $(this).closest('fieldset').attr('id').substring(6)
 		if $(this).val() != ''
 			$('.mkbl-form-hint.is-input').addClass('is-displayed')
@@ -225,11 +226,18 @@ Mkbl.formInit = ->
 					), 400
 					
 				else
-					nextField = $('.mkbl-form-subfields fieldset.is-active').next().attr('id')
+					nextField = $('.mkbl-form-subfields fieldset.is-active').next('.is-clean').attr('id')
 					Mkbl.moveToField nextField
+					if !$('.mkbl-form-subfields fieldset.is-clean').length
+						$('.mkbl-form-complete').addClass('is-active')
+						$('.mkbl-form-hint.is-select').removeClass('is-displayed')
+						$('.mkbl-form-hint.is-input').removeClass('is-displayed')
 			else
 				$(this).removeClass('has-error')
 				$('.mkbl-form-progress-bar').removeClass('has-error')
+		else
+			$(this).addClass('has-error')
+			$('.mkbl-form-progress-bar').addClass('has-error')
 
 	$(window).on 'keydown', (e) ->
 		keyCode = e.keyCode or e.which
@@ -298,7 +306,7 @@ Mkbl.formInit = ->
 		selectOption = $(this).text()
 		$('#enter-' + Mkbl.currentField + ' .mkbl-sselect').val(selectOption)
 
-		if $(this).closest('fieldset').is(':last-of-type') && !$('.mkbl-form-subfields').find('.mkbl-fieldset.is-clean').length
+		if !$('.mkbl-form-subfields').find('.mkbl-fieldset.is-clean').length
 			$('.mkbl-select-bg').removeClass('is-open')
 			$('.mkbl-form-hint.is-select').removeClass('is-displayed')
 			$('.mkbl-form-hint.is-input').removeClass('is-displayed')
