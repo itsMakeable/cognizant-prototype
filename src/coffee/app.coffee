@@ -215,13 +215,14 @@ Mkbl.formInit = ->
 				if $(this).closest('fieldset').is(':last-of-type')
 					setTimeout (->
 						success = Mkbl.saveField(thisField)
+						if (success)
+							$('.mkbl-button').addClass('is-active').trigger('focus')
+							setTimeout (->
+								$('.mkbl-form-complete').addClass('is-active')
+								$('.mkbl-form-hint.is-input').removeClass('is-displayed')
+							), 200
 					), 400
-					if (success)
-						$('.mkbl-button').addClass('is-active').trigger('focus')
-						setTimeout (->
-							$('.mkbl-form-complete').addClass('is-active')
-							$('.mkbl-form-hint.is-input').removeClass('is-displayed')
-						), 200
+					
 				else
 					nextField = $('.mkbl-form-subfields fieldset.is-active').next().attr('id')
 					Mkbl.moveToField nextField
