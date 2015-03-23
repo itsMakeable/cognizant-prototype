@@ -219,6 +219,7 @@ Mkbl.formInit = ->
 							$('.mkbl-button').addClass('is-active').trigger('focus')
 							setTimeout (->
 								$('.mkbl-form-complete').addClass('is-active')
+								$('.mkbl-form-hint.is-select').removeClass('is-displayed')
 								$('.mkbl-form-hint.is-input').removeClass('is-displayed')
 							), 200
 					), 400
@@ -238,6 +239,7 @@ Mkbl.formInit = ->
 				$('.mkbl-button').addClass('is-active').trigger('focus')
 				setTimeout (->
 					$('.mkbl-form-complete').addClass('is-active')
+					$('.mkbl-form-hint.is-select').removeClass('is-displayed')
 					$('.mkbl-form-hint.is-input').removeClass('is-displayed')
 				), 200
 				$('.mkbl-form-main-field').addClass('is-hidden')
@@ -251,6 +253,8 @@ Mkbl.formInit = ->
 						nextField = $('.mkbl-form-subfields fieldset.is-active').next(		).attr('id')
 						if $('#enter-' + Mkbl.currentField).is(':last-of-type')
 							$('.mkbl-button').addClass('is-active').trigger('focus')
+							$('.mkbl-form-hint.is-select').removeClass('is-displayed')
+							$('.mkbl-form-hint.is-input').removeClass('is-displayed')
 						Mkbl.moveToField nextField
 					else
 						$('#enter-' + Mkbl.currentField).find('input').addClass('has-error')
