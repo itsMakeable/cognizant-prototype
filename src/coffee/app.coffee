@@ -132,7 +132,9 @@ Mkbl.prepareField = (nextField) ->
 			), 450
 	else
 		$('#enter-' + nextField).removeClass('is-hidden')
-
+		$('#enter-' + nextField)
+			.find('.mkbl-main-input')
+			.trigger('focus')
 	$('#' + nextField)
 		.addClass('is-active')
 		.removeClass('is-clean')
@@ -165,6 +167,8 @@ Mkbl.formInit = ->
 		nextField = $(this).attr('id')
 		Mkbl.moveToField nextField
 		$('.mkbl-form-complete').removeClass('is-active')
+		$('.mkbl-form-hint.is-select').removeClass('is-displayed')
+		$('.mkbl-form-hint.is-input').removeClass('is-displayed')
 
 	$('.mkbl-main-input').on 'keydown', ->
 		thisField = $(this).closest('fieldset').attr('id').substring(6)
@@ -219,7 +223,7 @@ Mkbl.formInit = ->
 							$('.mkbl-form-hint.is-input').removeClass('is-displayed')
 						), 200
 				else
-					nextField = $('.mkbl-form-subfields fieldset.is-active').next('.is-clean').attr('id')
+					nextField = $('.mkbl-form-subfields fieldset.is-active').next().attr('id')
 					Mkbl.moveToField nextField
 			else
 				$(this).removeClass('has-error')
@@ -229,12 +233,13 @@ Mkbl.formInit = ->
 		keyCode = e.keyCode or e.which
 		if keyCode == 9 || keyCode == 13
 			e.preventDefault()
-			if !$('.mkbl-form-subfields').find('.mkbl-fieldset.is-clean').length
+			if $(this).closest('fieldset').is(':last-of-type') && $('.mkbl-form-subfields').find('.mkbl-fieldset.is-clean').length
 				$('.mkbl-button').addClass('is-active').trigger('focus')
 				setTimeout (->
 					$('.mkbl-form-complete').addClass('is-active')
 					$('.mkbl-form-hint.is-input').removeClass('is-displayed')
 				), 200
+				$('.mkbl-form-main-field').addClass('is-hidden')
 			else
 				$('.mkbl-form-hint.is-select').removeClass('is-displayed')
 				$('.mkbl-form-hint.is-input').removeClass('is-displayed')
@@ -242,7 +247,7 @@ Mkbl.formInit = ->
 					if $('.mkbl-form').find('.mkbl-select-bg.is-open .is-active').length
 						selectOption = $('.mkbl-select-bg.is-open .is-active').text()
 						$('#enter-' + Mkbl.currentField + ' .mkbl-sselect').val(selectOption)
-						nextField = $('.mkbl-form-subfields fieldset.is-active').next('.is-clean').attr('id')
+						nextField = $('.mkbl-form-subfields fieldset.is-active').next(		).attr('id')
 						if $('#enter-' + Mkbl.currentField).is(':last-of-type')
 							$('.mkbl-button').addClass('is-active').trigger('focus')
 						Mkbl.moveToField nextField
@@ -258,7 +263,7 @@ Mkbl.formInit = ->
 			if $('.mkbl-form').find('.mkbl-select-bg.is-open .is-active').length
 				selectActive = $('.mkbl-form').find('.mkbl-select-bg.is-open .is-active')
 				selectActive.removeClass('is-active')
-				selectActive.next('.is-clean').addClass('is-active')
+				selectActive.next().addClass('is-active')
 				$('#enter-' + Mkbl.currentField).find('input').removeClass('has-error')
 				$('.mkbl-form-progress-bar').removeClass('has-error')
 			else
@@ -288,7 +293,7 @@ Mkbl.formInit = ->
 		selectOption = $(this).text()
 		$('#enter-' + Mkbl.currentField + ' .mkbl-sselect').val(selectOption)
 
-		if ($(this).closest('fieldset').is(':last-of-type')) || !$('.mkbl-form-subfields').find('.mkbl-fieldset.is-clean').length
+		if $(this).closest('fieldset').is(':last-of-type') && !$('.mkbl-form-subfields').find('.mkbl-fieldset.is-clean').length
 			$('.mkbl-select-bg').removeClass('is-open')
 			$('.mkbl-form-hint.is-select').removeClass('is-displayed')
 			$('.mkbl-form-hint.is-input').removeClass('is-displayed')
@@ -308,7 +313,7 @@ Mkbl.formInit = ->
 	$('.mkbl-select-option').on 'mouseover', ->
 		$('.mkbl-select-option').addClass('not-filtered').removeClass('is-active')
 		$(this).addClass('is-active')
-		$('#enter-' + Mkbl.currentField + ' .mkbl-main-input').val($(this).text())
+		# $('#enter-' + Mkbl.currentField + ' .mkbl-main-input').val($(this).text())
 		$('#enter-' + Mkbl.currentField).find('input').removeClass('has-error')
 		$('.mkbl-form-progress-bar').removeClass('has-error')
 
