@@ -43,6 +43,7 @@ $input
 	&.is-filled
 		.mkbl-label
 			top -10px
+		
 	&.is-typing
 		svg circle
 			&:nth-of-type(3)
@@ -89,7 +90,14 @@ $input
 			.mkbl-subinput
 				opacity 1
 				// width 100%
-			
+		&.is-filled
+			&.is-clean
+				opacity 1
+				visibility visible
+				.mkbl-label
+					opacity 1
+				.mkbl-subinput
+					opacity 1
 .mkbl-label,
 .mkbl-main-label
 	upcase()

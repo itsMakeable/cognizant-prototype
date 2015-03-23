@@ -90,7 +90,6 @@ Mkbl.saveField = (currentField) ->
 	if currentFieldVal == ''
 		# || !$('#enter-' + currentField).hasClass('is-clean')
 		hasError = true
-		console.log hasError
 		$('#enter-' + currentField).find('input').trigger('focus')
 		$('#enter-' + currentField).find('input').addClass('has-error')
 		$('.mkbl-form-progress-bar').addClass('has-error')
@@ -165,8 +164,14 @@ Mkbl.setProgress = ->
 
 Mkbl.formInit = ->
 	$('.mkbl-form-subfields .mkbl-fieldset').on 'click', ->
-		nextField = $(this).attr('id')
-		Mkbl.moveToField nextField
+		if $('.mkbl-form-main-field .mkbl-fieldset').not('.is-hidden').find('input').val() != ''
+			nextField = $(this).attr('id')
+			Mkbl.moveToField nextField
+		else
+			nextField = 'field-' + $(this).closest('fieldset').attr('id').substring(6)
+			$('#' + Mkbl.currentField).removeClass('is-active').addClass('is-filled').addClass('is-clean')
+			$('#enter-' + Mkbl.currentField).addClass('is-hidden')
+			Mkbl.prepareField(nextField)
 		$('.mkbl-form-complete').removeClass('is-active')
 		$('.mkbl-form-hint.is-select').removeClass('is-displayed')
 		$('.mkbl-form-hint.is-input').removeClass('is-displayed')
@@ -202,7 +207,13 @@ Mkbl.formInit = ->
 					$('.mkbl-button').addClass('is-active').trigger('focus')
 			), 400
 		else
-			$('.mkbl-form-subfields fieldset.is-active').next('.is-clean').click()
+			
+			if !$('.mkbl-form-subfields fieldset.is-clean').length
+				$('.mkbl-form-complete').addClass('is-active')
+				$('.mkbl-form-hint.is-select').removeClass('is-displayed')
+				$('.mkbl-form-hint.is-input').removeClass('is-displayed')
+			else
+				$('.mkbl-form-subfields fieldset.is-active').next('.is-clean').click()
 
 	$('.mkbl-main-input').on 'keyup', (e) ->
 		thisField = $(this).closest('fieldset').attr('id').substring(6)
@@ -226,7 +237,7 @@ Mkbl.formInit = ->
 					), 400
 					
 				else
-					nextField = $('.mkbl-form-subfields fieldset.is-active').next('.is-clean').attr('id')
+					nextField = $('.mkbl-form-subfields fieldset.is-active').next('.is-clean').attr('id') || $('.mkbl-form-subfields fieldset').next('.is-clean').attr('id')
 					Mkbl.moveToField nextField
 					if !$('.mkbl-form-subfields fieldset.is-clean').length
 						$('.mkbl-form-complete').addClass('is-active')
@@ -250,7 +261,7 @@ Mkbl.formInit = ->
 					$('.mkbl-form-hint.is-select').removeClass('is-displayed')
 					$('.mkbl-form-hint.is-input').removeClass('is-displayed')
 				), 200
-				$('.mkbl-form-main-field').addClass('is-hidden')
+				
 			else
 				$('.mkbl-form-hint.is-select').removeClass('is-displayed')
 				$('.mkbl-form-hint.is-input').removeClass('is-displayed')
