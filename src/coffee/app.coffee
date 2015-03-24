@@ -72,7 +72,8 @@ Mkbl.prevSlide = ->
 Mkbl.listFilter = (input, list) ->
 	$(input).on 'keyup', (e) ->
 		keyCode = e.keyCode or e.which
-		if keyCode != 9 && keyCode != 13 && keyCode != 38 && keyCode != 40
+		if $.inArray(keyCode, [9,13,38,40]) < 0
+		# if keyCode != 9 && keyCode != 13 && keyCode != 38 && keyCode != 40
 			filter = $(this).val()
 			if filter && filter != ''
 				$('.mkbl-form-hint.is-select').removeClass('is-displayed')
@@ -80,6 +81,7 @@ Mkbl.listFilter = (input, list) ->
 				$(list).find('li:not(:contains(' + filter + '))').removeClass('not-filtered')
 				$(list).find('li:contains(' + filter + ')').addClass('not-filtered')
 				$(list).find('li.not-filtered').eq(0).addClass('is-active')
+				
 			else
 				$(list).find('li').addClass('not-filtered').removeClass('is-active')
 				# if $('.mkbl-main-input').val() != ''
@@ -253,11 +255,14 @@ Mkbl.formInit = ->
 	Mkbl.prepareField('field-name')
 	Mkbl.progressDenominator = $('.mkbl-form-subfields .mkbl-fieldset').length
 	$('.mkbl-form-subfields .mkbl-fieldset').on 'click', ->
-		Mkbl.moveToField( $(this).attr("id"))
+		Mkbl.moveToField( $(this).attr('id') )
 
 	$('.mkbl-main-input').on 'keydown', ->
 		thisField = $(this).closest('fieldset').attr('id').substring(6)
 		$('#' + thisField).addClass('is-dirty')
+		$('.mkbl-form-main-field .mkbl-fieldset').find('input').removeClass('has-error')
+		$('.mkbl-form-hint.is-input').addClass('is-displayed')
+		$('.mkbl-form-progress-bar').removeClass('has-error')
 		### This animates the input dots ###
 		deanimateEllipse = ->
 			$('#' + thisField).removeClass('is-typing')
@@ -290,7 +295,11 @@ Mkbl.formInit = ->
 		if keyCode == 9 || keyCode == 13
 			if !$('.mkbl-form-button').is(':focus')
 				e.preventDefault()
-				Mkbl.requestNextField();
+				if $('.mkbl-form').find('.mkbl-select-bg.is-open .is-active').length
+					$('#enter-' + Mkbl.currentField + ' .mkbl-main-input').val($('.mkbl-select-bg.is-open .is-active').text())
+				setTimeout (->
+					Mkbl.requestNextField();
+				), 1
 		### Up Arrow ###
 		if keyCode == 40
 			e.preventDefault()
