@@ -36,6 +36,7 @@ $input
 			opacity 1
 			i
 				opacity 1
+				transition all 0.3s ease 0.3s
 		.mkbl-fieldset-bg
 			height 40px
 			background-color rgba(0,0,0,0.1)
@@ -279,11 +280,11 @@ $input
 	fs(1.8rem)
 	font-family ProximaNova
 	color blue
-	transition height 0.4s ease-out 0.1s
+	transition height 0.3s ease-in 0s
 	overflow: hidden
 	&.is-open
 		height 349px
-		transition height 0.4s ease-out
+		transition height 0.4s cubic-bezier(0.68, 0, 0.2, 1.05)
 		@media screen and (max-height: 768px) and (min-width: 1024px)
 			height 182px
 		.mkbl-select-option
@@ -316,5 +317,5 @@ $input
 		font-family ProximaNova
 		text-transform capitalize
 	&.is-active
-		transition opacity 0.4s ease 0.1s
+		transition opacity 0.3s ease
 		opacity 1
