@@ -1,6 +1,6 @@
 Mkbl = {}
 
-
+## plugin for jQuery :contains to be case-insensitive
 $.expr[':'].Contains = (a, i, m) ->
 	(a.textContent or a.innerText or '').toUpperCase().indexOf(m[3].toUpperCase()) >= 0
 
@@ -73,7 +73,6 @@ Mkbl.listFilter = (input, list) ->
 	$(input).on 'keyup', (e) ->
 		keyCode = e.keyCode or e.which
 		if $.inArray(keyCode, [9,13,38,40]) < 0
-		# if keyCode != 9 && keyCode != 13 && keyCode != 38 && keyCode != 40
 			filter = $(this).val()
 			if filter && filter != ''
 				$('.mkbl-form-hint.is-select').removeClass('is-displayed')
@@ -88,8 +87,8 @@ Mkbl.listFilter = (input, list) ->
 				$('.mkbl-form-hint.is-select').addClass('is-displayed')
 				$('.mkbl-form-hint.is-input').removeClass('is-displayed')
 
-
-checkArray = (needle) ->
+# Check array for a value
+Mkbl.checkArray = (needle) ->
 	if typeof Array::indexOf == 'function'
 		indexOf = Array::indexOf
 	else
@@ -124,7 +123,7 @@ Mkbl.saveField = (currentField) ->
 		$('#enter-' + currentField).find('.mkbl-select-option').each ->
 			optionText = $(this).text()
 			options.push optionText
-		if checkArray.call(options, $('#enter-' + currentField).find('.mkbl-main-input').val()) == -1
+		if Mkbl.checkArray.call(options, $('#enter-' + currentField).find('.mkbl-main-input').val()) == -1
 			hasError = true
 			$('#enter-' + currentField).find('input').addClass('has-error').trigger('focus')
 			$('.mkbl-form-progress-bar').addClass('has-error')
@@ -351,6 +350,6 @@ Mkbl.formInit = ->
 $ ->	
 	Mkbl.slideInit()
 	Mkbl.formInit()
-	
+	$('.center').addClass('is-on')
 
 	

@@ -18,13 +18,5 @@
   "dependencies": {
     "lodash": "~3.0.1",
     "jquery": "1.11.2"
-  },
-  "overrides": {
-    "swiper": {
-      "main": [
-        "dist/js/swiper.jquery.min.js",
-        "dist/css/swiper.css"
-      ]
-    }
   }
 }
